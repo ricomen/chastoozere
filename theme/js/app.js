@@ -90,7 +90,13 @@ btnsShowMore.forEach((btn) => {
 const allLinksInPage = document.querySelectorAll("a");
 const regexpScrollLink = /^#/;
 const regexpRedirectLink = /^https?:/;
-const additionCoefficient = document.querySelector(".header").clientHeight + 20;
+const baseOffset = 20;
+
+function getHeaderOffset() {
+  const header = document.querySelector(".header");
+  const headerHeight = header ? header.clientHeight : 0;
+  return headerHeight + baseOffset;
+}
 
 function scrollToBlock(link, blockId) {
   link.addEventListener("click", (e) => {
@@ -101,7 +107,7 @@ function scrollToBlock(link, blockId) {
 
     const rect = block.getBoundingClientRect();
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const targetTop = rect.top + scrollTop - additionCoefficient;
+    const targetTop = rect.top + scrollTop - getHeaderOffset();
 
     window.scrollTo({
       top: targetTop,
@@ -110,31 +116,21 @@ function scrollToBlock(link, blockId) {
   });
 }
 
-function redirectAndScrollToBlock(link, blockId) {
-  link.addEventListener("click", (e) => {
-    e.preventDefault();
-
-    const url = new URL(link.href);
-    url.searchParams.set("hasScroll", "true");
-    url.searchParams.set("block", blockId || "");
-    window.location.href = url.toString().split("#")[0];
-  });
-}
-
 function handleScrollOnPageLoad() {
-  const url = new URL(window.location);
-  const hasScroll = url.searchParams.get("hasScroll");
-  const blockId = url.searchParams.get("block");
+  const hash = window.location.hash;
+  if (!hash || hash === "#") return;
 
-  if (!hasScroll && !blockId) return;
+  const blockId = hash.substring(1);
 
   const block =
-    document.getElementById(blockId) || document.querySelector(`.${blockId}`);
+    document.getElementById(blockId) ||
+    document.querySelector(hash) ||
+    document.querySelector(`.${blockId}`);
 
   if (!block) return;
   const rect = block.getBoundingClientRect();
   const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-  const targetTop = rect.top + scrollTop - additionCoefficient;
+  const targetTop = rect.top + scrollTop - getHeaderOffset();
 
   window.scrollTo({
     top: targetTop,
@@ -150,12 +146,10 @@ allLinksInPage.forEach((link) => {
   const isRedirectLink = href.match(regexpRedirectLink);
 
   if (isRedirectLink) {
-    const hashMatch = href.match(/#(.*)/);
-    const blockId = hashMatch ? hashMatch[1] : "";
-    return redirectAndScrollToBlock(link, blockId);
+    return;
   }
 
   if (isScrollLink) return scrollToBlock(link, href.substring(1));
 });
 
-handleScrollOnPageLoad();
+window.addEventListener("load", handleScrollOnPageLoad);
