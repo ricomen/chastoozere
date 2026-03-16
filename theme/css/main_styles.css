@@ -93,6 +93,11 @@
   -webkit-text-shadow: rgba(0, 0, 0, 0.01) 0 0 1px;
   text-shadow: rgba(0, 0, 0, 0.01) 0 0 1px;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   /* font-family: "Source Sans Pro", sans-serif;
   */
@@ -2653,13 +2658,10 @@ a.bg-secondary:hover {
   font-weight: 700;
 }
 
-.table--donations tbody tr {
-}
-
 .table--donations tbody td {
   border-bottom: 1px rgb(241, 241, 241) solid;
   color: #1a462e;
-  vertical-align: middle;
+  vertical-align: top;
 }
 
 .table--donations tbody td i {
@@ -2668,13 +2670,7 @@ a.bg-secondary:hover {
 }
 
 @media (max-width: 500px) {
-  .table--donations thead {
-    display: none;
-  }
-
   .table--donations tbody tr {
-    display: flex;
-    flex-wrap: wrap;
     border-bottom: 1px rgb(241, 241, 241) solid;
     padding: 15px 0;
   }
@@ -2685,21 +2681,17 @@ a.bg-secondary:hover {
   }
 
   .table--donations tbody td:nth-child(1) {
-    width: 100%;
 
     font-style: italic;
   }
 
-  .table--donations tbody td:nth-child(2) {
-    width: 40%;
+  .table--donations tbody td:nth-child(2) { 
+    text-align: center;
   }
 
   .table--donations tbody td:nth-child(3) {
-    width: 59%;
-
-    display: flex;
-
-    align-items: center;
+    /* width: 59%; */
+    /* display: flex; */
   }
 
   .table--donations tbody td:nth-child(3) i {
@@ -3903,6 +3895,7 @@ body.compensate-for-scrollbar .header{
   font-size: 34px;
 }
 
+
 .section-prayer__chose {
   margin-bottom: 40px;
 }
@@ -4098,6 +4091,13 @@ body.compensate-for-scrollbar .header{
   max-width: 300px;
   width: 100%;
   cursor: pointer;
+}
+
+.section-prayer__additionals .block-header .section_title {
+  margin-bottom: 0;
+}
+.section-prayer__additionals .block-header p {
+  margin-top: 0;
 }
 
 .section-prayer__item.active{
@@ -4437,7 +4437,7 @@ body.compensate-for-scrollbar .header{
     grid-template-columns: 1fr;
   }
   .section-prayer__additionals{
-      order: -1;
+    order: -1;
   }
   .section-prayer__form > .block-header,
   .section-prayer__footer {
@@ -4477,13 +4477,12 @@ body.compensate-for-scrollbar .header{
   
 }
 @media only screen and (max-width: 768px) {
-    
-    .section-main-icon__info .button {
-    margin: 25px auto 0px;
-}
- .video-carousel .slick-dots {
-    bottom: -10px;
-}
+  .section-main-icon__info .button {
+      margin: 25px auto 0px;
+  }
+  .video-carousel .slick-dots {
+      bottom: -10px;
+  }
 
   .block-header.fita h2, .block-header.fita .h2 {
     font-size: 70px;
@@ -4545,9 +4544,7 @@ body.compensate-for-scrollbar .header{
   .table--donations tbody tr td{
       font-size: 16px;
   }
-  .table--donations tbody td:nth-child(2) {
-      width: 48%;
-  }
+  
   .breadcrumb-item a, .breadcrumb-item{
       font-size: 16px;
   }

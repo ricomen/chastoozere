@@ -61,6 +61,31 @@ function scrollToBlock(link, blockId) {
   });
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+  const toTopBtn = document.querySelector(".js-to-top-btn");
+  if (!toTopBtn) return;
+
+  let topOffset = 0;
+  toTopBtn.style.display = "none";
+
+  toTopBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  });
+
+  window.addEventListener("scroll", () => {
+    topOffset = window.pageYOffset || document.documentElement.scrollTop;
+    if (topOffset > 500) {
+      toTopBtn.style.display = "";
+    } else {
+      toTopBtn.style.display = "none";
+    }
+  });
+});
+
 function handleScrollOnPageLoad() {
   const hash = window.location.hash;
   if (!hash || hash === "#") return;
