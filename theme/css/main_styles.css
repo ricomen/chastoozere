@@ -43,38 +43,39 @@
 @font-face {
   font-family: ArnoPro;
   font-display: swap;
-  /* src: url("/fonts/ArnoPro-Bold.woff2") format("woff2"), url("../fonts/ArnoPro-Bold.woff") format("woff"); */
+  src: url("/fonts/ArnoPro-Bold.woff2") format("woff2"), url("../fonts/ArnoPro-Bold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
 }
 @font-face {
   font-family: ArnoPro;
   font-display: swap;
-  /* src: url("/fonts/ArnoPro-Bold_Italic.woff2") format("woff2"), url("../fonts/ArnoPro-Bold_Italic.woff") format("woff"); */
+  src: url("/fonts/ArnoPro-Bold_Italic.woff2") format("woff2"), url("../fonts/ArnoPro-Bold_Italic.woff") format("woff");
   font-weight: 700;
   font-style: italic;
 }
 @font-face {
   font-family: ArnoPro;
   font-display: swap;
-  /* src: url("/fonts/ArnoPro-Regular.woff2") format("woff2"), url("../fonts/ArnoPro-Regular.woff") format("woff"); */
+  src: url("/fonts/ArnoPro-Regular.woff2") format("woff2"), url("../fonts/ArnoPro-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: FitaVjaz;
   font-display: swap;
-  /* src: url("/fonts/FitaVjaz-Regular.woff2") format("woff2"), url("../fonts/FitaVjaz-Regular.woff") format("woff"); */
+  src: url("/fonts/FitaVjaz-Regular.woff2") format("woff2"), url("../fonts/FitaVjaz-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
 	font-family: Candara;
 	font-display: swap;
-  /* src: url("/fonts/Candara-Regular.woff2") format("woff2"), url("../fonts/Candara-Regular.woff") format("woff"); */
+  src: url("/fonts/Candara-Regular.woff2") format("woff2"), url("../fonts/Candara-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
 }
+
 :root {
   --text-primary: #206051;
   --text-secondary: #818089;
@@ -91,9 +92,6 @@
   -webkit-font-smoothing: antialiased;
   -webkit-text-shadow: rgba(0, 0, 0, 0.01) 0 0 1px;
   text-shadow: rgba(0, 0, 0, 0.01) 0 0 1px;
-}
-html {
-    scroll-behavior: smooth;
 }
 body {
   /* font-family: "Source Sans Pro", sans-serif;
@@ -915,6 +913,7 @@ section {
   height: 100%;
   background: #628276;
 }
+
 .home_content {
   /* position: absolute; */
   /* top: 40%; */
@@ -925,7 +924,7 @@ section {
 
 .home_title {
   font-size: 70px;
-  //font-weight: 700;
+  /* font-weight: 700; */
   /* text-transform: uppercase; */
   letter-spacing: 0.03em;
   color: #ffffff;
@@ -2073,6 +2072,7 @@ section {
   align-items: center;
   justify-content: center;
 }
+
 .page-home .home_title{
     font-family: ArnoPro;
     font-size: 50px;
@@ -3768,7 +3768,7 @@ p.videowraplists {
 .section-main-icon__info .button a, .section-church .button a{
     text-transform: uppercase;
     font-size: 25px;
-    line-height: 1.6;
+    /* line-height: 1.6; */
     font-family: Arial;
     font-weight: 400;
 }
@@ -3899,6 +3899,10 @@ body.compensate-for-scrollbar .header{
   color: #2d2d2d;
 }
 
+.section-prayer .section_title{
+  font-size: 34px;
+}
+
 .section-prayer__chose {
   margin-bottom: 40px;
 }
@@ -4005,6 +4009,26 @@ body.compensate-for-scrollbar .header{
   display: block;
   position: relative;
 }
+.section-prayer__names .section-prayer__name-row {
+  position: relative;
+}
+
+.section-prayer__names .section-prayer__remove-name {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  width: 36px;
+  padding: 0;
+  margin: 0;
+  height: 36px;
+  border: none;
+  background: none;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  transform: translateY(calc(-50% - 2px));
+}
+
 .section-prayer__names label:not(:last-child) {
   margin-bottom: 8px;
 }
@@ -4016,7 +4040,7 @@ body.compensate-for-scrollbar .header{
   height: 2px;
   background: #bcbbbb;
 }
-.section-prayer__names button {
+.section-prayer__names > .section-prayer__add-name {
   display: block;
   width: 100%;
   outline: none;
@@ -4119,11 +4143,14 @@ body.compensate-for-scrollbar .header{
   padding: 5px 10px;
   transition: all 300ms ease;
 }
+
+.section-prayer__item.active button,
 .section-prayer-item__add button:hover {
   color: #fff;
   background: #d6b574;
   cursor: pointer;
 }
+
 .section-prayer-item__add button:active, .section-prayer-item__add button.active {
   color: #000;
 }
