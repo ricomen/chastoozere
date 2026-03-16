@@ -1423,7 +1423,7 @@ section {
   font-size: 34px;
   font-weight: 700;
   color: #628276;
-  text-transform: uppercase;
+//  text-transform: uppercase;
 }
 
 .donation_info_container {
@@ -1566,7 +1566,7 @@ section {
 
 .donation_button {
   width: 100%;
-  margin-top: 15px;
+  margin-top: 25px;
 }
 
 /*********************************
@@ -3707,7 +3707,7 @@ p.videowraplists {
   overflow: hidden;
 }
 .section-main-icon .button {
-  max-width: 550px;
+  max-width: 400px;
 }
 .section-intro__icon{
     margin-bottom: 30px;
@@ -3767,13 +3767,13 @@ p.videowraplists {
 }
 .section-main-icon__info .button a, .section-church .button a{
     text-transform: uppercase;
-    font-size: 25px;
+    font-size: 23px;
     /* line-height: 1.6; */
     font-family: Arial;
     font-weight: 400;
 }
 .section-church .button{
-    max-width: 550px;
+    max-width: 300px;
 }
 
 /* .section-church .button {
@@ -3925,7 +3925,7 @@ body.compensate-for-scrollbar .header{
 }
 .section-prayer__form .block-header h2,
 .section-prayer__form .block-header .h2{
-    font-size: 32px;
+//    font-size: 32px;
 }
 .section-prayer__additional {
   margin-bottom: 30px;
@@ -3968,7 +3968,8 @@ body.compensate-for-scrollbar .header{
   font-family: FitaVjaz;
   font-size: 60px;
   color: #d3b473;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
+  line-height: 0.9;
 }
 .section-prayer__block p {
   color: #bcbbbb;
