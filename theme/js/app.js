@@ -129,34 +129,51 @@ const baseRedirectOptions = {
 };
 
 if (prayerForm) {
-  const selectedPrayerTitle = prayerForm.querySelector(".section-prayer__selected-prayer-title");
-  const selectedPrayerLabel = prayerForm.querySelector(".section-prayer__selected-prayer-label");
-
   const chosePrayerButtonsHandler = prayerForm.querySelector(".section-prayer__chose");
-
   const itemCounters = Array.from(prayerForm.querySelectorAll(".count"));
-
   const totalNode = prayerForm.querySelector(".section-prayer__total");
-
   const donationInput = prayerForm.querySelector("input[name='donation-value']");
+  const videoReportSection = prayerForm.querySelector(".section-prayer-video-respond");
+  const videoCheckbox = videoReportSection.querySelector("input[type='checkbox']");
+  const videoEmailInput = videoReportSection.querySelector("input[name='e-mail']");
 
-  const videoCheckbox = prayerForm.querySelector(
-    ".section-prayer-video-respond input[type='checkbox']"
-  );
-
-  /** @type {HTMLInputElement | null} Поле e-mail для отправки видео (обязательно при отмеченном чекбоксе) */
-  const videoEmailInput = prayerForm.querySelector(
-    ".section-prayer-video-respond input[name='e-mail']"
-  );
-
-  /** Ставит или снимает required у поля e-mail в зависимости от галочки «видео отчёт». */
   const updateVideoEmailRequired = () => {
-
     if (!videoEmailInput) return;
     if (videoCheckbox && videoCheckbox.checked) {
       videoEmailInput.setAttribute("required", "");
     } else {
       videoEmailInput.removeAttribute("required");
+    }
+  };
+
+  const resetVideoReportSection = () => {
+    if (!videoReportSection) return;
+
+    videoReportSection.querySelectorAll("input").forEach((el) => {
+      if (el instanceof HTMLInputElement) {
+        if (el.type === "checkbox") { el.checked = false; }
+        else {
+          el.value = "";
+        }
+      }
+    });
+
+    updateVideoEmailRequired();
+    calculateTotal();
+  };
+
+  const syncVideoReportVisibility = (prayerButton) => {
+    if (!videoReportSection) return;
+    const videoReportFlag = prayerButton.closest(".section-prayer__item").dataset.videoReport;
+    console.log('videoReportFlag', videoReportFlag);
+    resetVideoReportSection();
+
+    if (videoReportFlag === "Y") {
+      console.log('videoReportSection.hidden = "false"', videoReportSection.hidden);
+      videoReportSection.hidden = false;
+    } else {
+      console.log('videoReportSection.hidden = "true"', videoReportSection.hidden);
+      videoReportSection.hidden = true;
     }
   };
 
@@ -168,7 +185,6 @@ if (prayerForm) {
   const calculateTotal = () => {
     let total = 0;
 
-    // Цена выбранного молебна
     const activePrayerButton = prayerForm.querySelector(
       ".section-prayer__chose .section-prayer__item.active button[data-value]"
     );
@@ -177,8 +193,7 @@ if (prayerForm) {
       const basePrice = parseInt(activePrayerButton.dataset.value, 10);
       if (!isNaN(basePrice)) {
 
-        // если имен несколько
-        const nameInputs = prayerForm.querySelectorAll(".section-prayer__names input[name='name']");
+        const nameInputs = prayerForm.querySelectorAll(".section-prayer__names input[name='name[]']");
         if (nameInputs.length > 1) {
           const nameCount = Array.from(nameInputs).filter(
             (input) => (input.value && input.value.trim()) !== ""
@@ -190,7 +205,6 @@ if (prayerForm) {
       }
     }
 
-    // Дополнительные услуги с количеством (свечи, кагор, ладан, масло и т.п.)
     const priceInputs = prayerForm.querySelectorAll(
       ".section-prayer-additional__item input[type='text'][data-price]"
     );
@@ -203,7 +217,6 @@ if (prayerForm) {
       }
     });
 
-    // Видео‑отчёт
     if (videoCheckbox && videoCheckbox.checked) {
       const videoPrice = parseInt(videoCheckbox.dataset.price, 10);
       if (!isNaN(videoPrice)) {
@@ -211,11 +224,9 @@ if (prayerForm) {
       }
     }
 
-    // Произвольное пожертвование
     if (donationInput) {
       const raw = donationInput.value.trim();
       if (raw) {
-        // Убираем всё, кроме цифр
         const numeric = parseInt(raw.replace(/[^\d]/g, ""), 10);
         if (!isNaN(numeric)) {
           total += numeric;
@@ -243,7 +254,7 @@ if (prayerForm) {
       logicAfterCalcutalteValue({
         value: inputElement.value,
       });
-      // calculateTotal();
+
     });
 
     plusButton.addEventListener("click", (e) => {
@@ -256,7 +267,7 @@ if (prayerForm) {
       logicAfterCalcutalteValue({
         value: inputElement.value,
       });
-      // calculateTotal();
+
     });
 
     const logicAfterCalcutalteValue = ({ value }) => {
@@ -269,18 +280,17 @@ if (prayerForm) {
 
   if (additionalNames) {
     nameValues.length = 0;
-    additionalNames.querySelectorAll("input[name='name']").forEach((input) => {
+    additionalNames.querySelectorAll("input[name='name[]']").forEach((input) => {
       nameValues.push((input.value && input.value.trim()) || "");
     });
 
     const buttonAddName = additionalNames.querySelector(".section-prayer__add-name");
 
-    /** Допустимые символы в поле имени: буквы (латиница, кириллица), пробел, дефис, апостроф */
     const nameAllowedPattern = /[^a-zA-Zа-яА-ЯёЁ\s\-']/g;
 
     additionalNames.addEventListener("input", (e) => {
       const input = e.target;
-      if (!input || !input.matches("input[name='name']")) return;
+      if (!input || !input.matches("input[name='name[]']")) return;
       const start = input.selectionStart;
       const oldValue = input.value;
       const newValue = oldValue.replace(nameAllowedPattern, "");
@@ -288,7 +298,7 @@ if (prayerForm) {
         input.value = newValue;
         input.setSelectionRange(start, start);
       }
-      const inputs = additionalNames.querySelectorAll("input[name='name']");
+      const inputs = additionalNames.querySelectorAll("input[name='name[]']");
       const index = Array.from(inputs).indexOf(input);
       if (index !== -1) {
         nameValues[index] = (input.value && input.value.trim()) || "";
@@ -298,7 +308,7 @@ if (prayerForm) {
 
     buttonAddName.onclick = (e) => {
       e.preventDefault();
-      const inputs = additionalNames.querySelectorAll("input[name='name']");
+      const inputs = additionalNames.querySelectorAll("input[name='name[]']");
       const firstEmpty = Array.from(inputs).find(
         (input) => !(input.value && input.value.trim())
       );
@@ -310,10 +320,8 @@ if (prayerForm) {
       createNodeHandler(inputs.length);
     };
 
-    /** @type {number} Максимальное количество полей имён в записке */
     const MAX_NAMES_COUNT = 10;
 
-    /** Показывает кнопки «Удалить» только если полей имён больше одного. */
     const updateRemoveButtonsVisibility = () => {
       const rows = additionalNames.querySelectorAll(".section-prayer__name-row");
       const visible = rows.length > 1;
@@ -325,11 +333,6 @@ if (prayerForm) {
 
     updateRemoveButtonsVisibility();
 
-    /**
-     * Добавляет новое поле для ввода имени в записку; при достижении лимита скрывает кнопку.
-     * @param {number} id - текущее количество полей (используется как счётчик и id для нового input)
-     * @returns {void}
-     */
     const createNodeHandler = (id) => {
       if (id >= MAX_NAMES_COUNT) return (buttonAddName.style.display = "none");
       const label = document.createElement("label");
@@ -337,15 +340,16 @@ if (prayerForm) {
       label.classList.add("section-prayer__label", "section-prayer__name-row");
       const input = document.createElement("input");
       input.placeholder = "Введите имя";
-      input.name = "name";
+      input.name = "name[]";
       input.id = id;
       input.required = true;
+      input.maxLength = 20;
       const removeBtn = document.createElement("button");
       removeBtn.type = "button";
       removeBtn.className = "section-prayer__remove-name";
       removeBtn.title = "Удалить";
       removeBtn.setAttribute("aria-label", "Удалить имя");
-      removeBtn.textContent = "−";
+      removeBtn.textContent = "-";
       label.appendChild(input);
       label.appendChild(removeBtn);
       additionalNames.appendChild(label);
@@ -367,12 +371,10 @@ if (prayerForm) {
     });
   }
 
-  /** Обработчик change: пересчёт суммы при изменении количества, чекбокса или пожертвования */
   prayerForm.addEventListener("change", (e) => {
     const target = e.target;
     if (!target) return;
 
-    // Пересчитываем только для значимых полей
     if (
       target.matches(".section-prayer-additional__item input[type='text'][data-price]") ||
       target === donationInput ||
@@ -385,11 +387,10 @@ if (prayerForm) {
   function buildPrayerFormData() {
     const formData = new FormData(prayerForm);
 
-    // Список имён из .section-prayer__names: явно собираем и перезаписываем в FormData
-    // (только непустые значения, в порядке полей на форме)
-    const nameInputs = prayerForm.querySelectorAll(".section-prayer__names input[name='name']");
-    formData.delete("name");
-    nameValues.filter(Boolean).forEach((value) => formData.append("name", value));
+    formData.delete("name[]");
+    nameValues.filter(Boolean).forEach((value) => {
+      formData.append("name[]", value);
+    });
 
     const activeBtn = prayerForm.querySelector(
       ".section-prayer__chose .section-prayer__item.active button[data-value][data-prayer]"
@@ -407,24 +408,24 @@ if (prayerForm) {
     return formData;
   }
 
-  // function logFormDataForDebug(fd) {
-  //   const obj = {};
-  //   for (const [key, value] of fd.entries()) {
-  //     if (!key) continue;
-  //     if (key in obj) {
-  //       if (!Array.isArray(obj[key])) obj[key] = [obj[key]];
-  //       obj[key].push(value);
-  //     } else {
-  //       obj[key] = value;
-  //     }
-  //   }
-  //   console.log("Данные формы записки (отправка на бэк):", obj);
-  // }
+  function logFormDataForDebug(fd) {
+    const obj = {};
+    for (const [key, value] of fd.entries()) {
+      if (!key) continue;
+      if (key in obj) {
+        if (!Array.isArray(obj[key])) obj[key] = [obj[key]];
+        obj[key].push(value);
+      } else {
+        obj[key] = value;
+      }
+    }
+    console.log("Данные формы записки (отправка на бэк):", obj);
+  }
 
   prayerForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     const formData = buildPrayerFormData();
-    // logFormDataForDebug(formData);
+    logFormDataForDebug(formData);
 
     try {
       const response = await sendPrayer(formData);
@@ -456,7 +457,6 @@ if (prayerForm) {
       const button = e.target.closest("button");
       if (!button || !chosePrayerButtonsHandler.contains(button)) return;
 
-      // снимаем класс со всех кнопок в группе
       chosePrayerButtonsHandler
         .querySelectorAll("button")
         .forEach((btn) => {
@@ -465,20 +465,18 @@ if (prayerForm) {
         }
         );
 
-      // вешаем класс только на нажатую кнопку
       button.textContent = "Выбрано";
 
       const parentItem = button.closest(".section-prayer__item");
 
-      // вешаем класс на родительский элемент кнопки для подсвечивания активного
       parentItem.classList.add("active");
 
       setSelectedPrayer(parentItem);
+      syncVideoReportVisibility(button);
 
       calculateTotal();
     });
 
-    // При загрузке страницы автоматически выбираем первый молебен
     const firstPrayerButton = chosePrayerButtonsHandler.querySelector(
       ".section-prayer__item button[data-prayer]"
     );
