@@ -21,7 +21,7 @@
 
             <form name="prayer">
                 <div class="section-prayer__chose">
-                    <div class="section-prayer__item section-prayer-item">
+                    <div class="section-prayer__item section-prayer-item" data-video-report="Y">
                         <div class="section-prayer-item__info">
                             <div class="h3">40 молебнов у чудотворной иконы вмч. Георгия Победоносца</div>
                             <p>О здравии, благополучии и сохранении воинов</p>
@@ -33,7 +33,7 @@
                         </div>
                     </div>
 
-                    <div class="section-prayer__item section-prayer-item">
+                    <div class="section-prayer__item section-prayer-item" data-video-report="N">
                         <div class="section-prayer-item__info">
                             <div class="h3">Молебен у чудотворной иконы вмч. Георгия Победоносца</div>
                             <p>О здравии, благополучии и сохранении воинов</p>
@@ -46,7 +46,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="section-prayer__item section-prayer-item">
+                    <div class="section-prayer__item section-prayer-item" data-video-report="Y">
                         <div class="section-prayer-item__info">
                             <div class="h3">Полугодовой молебен у чудотворной иконы вмч. Георгия Победоносца</div>
                             <p>О здравии, благополучии и сохранении воинов</p>
@@ -57,7 +57,7 @@
                                 data-prayer="Полугодовой молебен у чудотворной иконы вмч. Георгия Победоносца">Выбрать</button>
                         </div>
                     </div>
-                    <div class="section-prayer__item section-prayer-item">
+                    <div class="section-prayer__item section-prayer-item" data-video-report="Y">
                         <div class="section-prayer-item__info">
                             <div class="h3">Годовой молебен у иконы вмч. Георгия Победоносца</div>
                             <p>О здравии, благополучии и сохранении воинов</p>
@@ -140,18 +140,20 @@
                                 <p data-value="300">300 р</p>
                             </div>
                         </div>
-                        <div class="section-prayer__video-respond section-prayer-video-respond">
+
+                        <div hidden data-video-report
+                            class="section-prayer__video-respond section-prayer-video-respond">
                             <div class="section-prayer-video-respond__row">
                                 <div class="section-prayer-video-respond__info">
-                                    <p>Хочу видео отчет</p>
-                                    <p>Батюшка запишет видео с молебном о ваших родных</p>
+                                    <p>Хочу видеоотчет</p>
+                                    <p>Батюшка запишет видео с молебном</p>
                                 </div>
                                 <label class="custom-checkbox">
-                                    <input type="checkbox" data-price="1100" name="video_report">
-                                    <p>1100 р</p>
+                                    <input type="checkbox" data-price="[[+video_report_price]]" name="video_report">
+                                    <p>100 р</p>
                                 </label>
                             </div>
-                            <input type="e-mail" name="e-mail" placeholder="Укажите e-mail куда отправить видео">
+                            <input type="email" name="e-mail" placeholder="Укажите e-mail куда отправить видео">
                         </div>
                     </div>
 
@@ -162,7 +164,7 @@
                             <p class="section-prayer__selected-prayer-label" name="selectedPrayerLabel">Не выбран</p>
                             <div class="section-prayer__names">
                                 <label class="section-prayer__label section-prayer__name-row">
-                                    <input type="text" name="name" placeholder="Введите имя" required>
+                                    <input type="text" name="name[]" placeholder="Введите имя" maxlength="20" required>
                                     <button type="button" class="section-prayer__remove-name" title="Удалить"
                                         aria-label="Удалить имя">−</button>
                                 </label>
@@ -177,6 +179,10 @@
                             Итого
                             <span class="section-prayer__total">0 руб.</span>
                         </p>
+                        <div class="section-prayer__footer-fields">
+                            <input type="text" name="contact_name" placeholder="Ваше имя">
+                            <input type="email" name="contact_email" placeholder="Ваш e-mail" autocomplete="email" inputmode="email" required>
+                        </div>
                         <button type="sumbit">Подать записку</button>
                     </footer>
                 </div>

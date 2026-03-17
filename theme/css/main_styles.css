@@ -2672,26 +2672,19 @@ a.bg-secondary:hover {
 @media (max-width: 500px) {
   .table--donations tbody tr {
     border-bottom: 1px rgb(241, 241, 241) solid;
-    padding: 15px 0;
   }
 
+  .table--donations thead td {
+    padding: 4px 0 4px 4px;
+  }
+  
   .table--donations tbody td {
     border: 0;
-    padding: 0;
+    padding: 6px 0 4px 4px;
   }
 
   .table--donations tbody td:nth-child(1) {
-
     font-style: italic;
-  }
-
-  .table--donations tbody td:nth-child(2) { 
-    text-align: center;
-  }
-
-  .table--donations tbody td:nth-child(3) {
-    /* width: 59%; */
-    /* display: flex; */
   }
 
   .table--donations tbody td:nth-child(3) i {
@@ -4093,6 +4086,40 @@ body.compensate-for-scrollbar .header{
   cursor: pointer;
 }
 
+.section-prayer__footer-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  width: 100%;
+  max-width: 600px;
+}
+
+.section-prayer__footer-fields > :only-child {
+  grid-column: 1 / -1;
+}
+
+.section-prayer__footer-fields input {
+  margin: 0px 2px;
+  background: #f6eec3;
+  border-radius: 4px;
+  color: #b4b0b0;
+  font-family: Arial;
+  padding: 10px 20px;
+  border: none;
+  border-bottom: 2px solid #bcbbbb;
+  text-align: left;
+  text-transform: uppercase;
+  font-size: 18px;
+  padding-bottom: 4px;
+  width: 100%;
+  outline: none;
+}
+
+.section-prayer__footer-fields input::placeholder {
+  color: #bcbbbb;
+  text-transform: uppercase;
+}
+
 .section-prayer__additionals .block-header .section_title {
   margin-bottom: 0;
 }
@@ -4443,6 +4470,10 @@ body.compensate-for-scrollbar .header{
   .section-prayer__footer {
     grid-column: span 1;
   }
+
+  .section-prayer__footer-fields {
+    grid-template-columns: 1fr;
+  }
   .section-prayer__form > .block-header{
       margin-bottom: 0px !important;
   }
@@ -4537,10 +4568,7 @@ body.compensate-for-scrollbar .header{
   .section-main-icon__info p{
       font-size: 20px;
   }
-  .table--donations tbody tr{
-      flex-wrap: nowrap;
-      gap: 10px;
-  }
+
   .table--donations tbody tr td{
       font-size: 16px;
   }
