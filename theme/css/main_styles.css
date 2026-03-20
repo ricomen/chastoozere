@@ -3340,7 +3340,7 @@ p.videowraplists {
   position: fixed;
   left: 0;
   z-index: 999999;
-  bottom: 0;
+  z-index: 4000;
 }
 .video-widget__container {
   font-family: Helvetica;
@@ -3944,9 +3944,13 @@ body.compensate-for-scrollbar .header{
   grid-template-columns: repeat(2, 1fr);
   gap: 40px 120px;
 }
-.section-prayer__form > .block-header{
+
+.section-prayer__form.show_additionals .section-prayer__additionals,
+.section-prayer__form.show_additionals .section-prayer__aside,
+.section-prayer__form > .block-header {
     grid-column: span 2;
 }
+
 .section-prayer__form .block-header h2,
 .section-prayer__form .block-header .h2{
 //    font-size: 32px;
@@ -4500,6 +4504,7 @@ body.compensate-for-scrollbar .header{
   }
   .section-prayer__form {
     grid-template-columns: 1fr;
+    gap: 40px;
   }
   .section-prayer__additionals{
     order: -1;
@@ -4638,19 +4643,25 @@ body.compensate-for-scrollbar .header{
 
 .section-intro-treby {
   display: flex;
-  gap: 20px;
+
   @media (max-width: 768px) {
     align-items: center;
     flex-direction: column;
   }
 }
 .section-intro-treby__image {
-  flex: 0 0 356px;
+  width: 356px;
+  flex-shrink: 0;
+  margin-right: 20px;
+  @media (max-width: 768px) {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
 }
 .section-intro-treby__info {
-  flex: 1 1 auto;
-
+  flex-grow: 1;
 }
+
 .section-intro-treby__info div {
   margin-top: 30px;
   padding: 10px;
