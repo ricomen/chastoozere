@@ -83,6 +83,7 @@
   --text-white: #fff;
   --card-bg: #f2efe9;
   --btn-bg: #6a8473;
+  --btn-border: #e9ecef;
   --progress-bar-color-primary: #d4b372;
   --progress-bar-color-grey: #dddddd;
 }
@@ -350,7 +351,7 @@ section {
   background: #628276;
   border-radius: 7px;
   font-weight: 700; /* box-shadow: inset 0px 0px 0 3px #e9ecef; */
-  border: 2px #e9ecef solid;
+  border: 2px var(--btn-border) solid;
 }
 .button a {
   display: block;
@@ -2354,9 +2355,7 @@ section {
 .sitemap li ul {
   padding-top: 8px;
 }
-.treby-grid {
-  margin-bottom: 20px;
-}
+
 .logo {
   margin-top: 5px;
 }
@@ -3008,29 +3007,68 @@ position: absolute !important;
 }
 
 .treby-grid {
+  margin-bottom: 20px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 10px;
 }
-.treby-grid .button {
+
+.treby-grid__item {
+
+}
+
+/* .treby-grid .button {
   width: 275px;
   margin: 5px;
 }
 .treby-grid .button a {
   color: white;
+} */
+
+.treb {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 8px;
+  padding: 10px;
+  width: 275px;
+  border: 1px solid var(--btn-border);
+  border-radius: 5px;
+  background-color: var(--btn-bg);
+  transition: background-color 0.3s ease;
 }
+
+.treb:hover {
+  background-color: #eac87edb;;
+}
+
+.treb__image {
+  width: 100%;
+  height: 100% !important;
+  object-fit: cover;
+}
+
+.treb__label {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+  color: var(--text-white);
+  text-transform: uppercase;
+}
+
 table {
   width: 100%;
   border-color: #628276;
 }
-table tr {
-}
+
 table td {
   padding: 5px 4px;
   border-color: #628276;
 }
-table p {
-}
+
 .page-content img {
   max-width: 100%;
   height: auto;
@@ -4595,4 +4633,30 @@ body.compensate-for-scrollbar .header{
   .menu_nav ul li a:hover{
       color: var(--text-primary);;
   }
+}
+
+
+.section-intro-treby {
+  display: flex;
+  gap: 20px;
+  @media (max-width: 768px) {
+    align-items: center;
+    flex-direction: column;
+  }
+}
+.section-intro-treby__image {
+  flex: 0 0 356px;
+}
+.section-intro-treby__info {
+  flex: 1 1 auto;
+
+}
+.section-intro-treby__info div {
+  margin-top: 30px;
+  padding: 10px;
+  border: 1px solid #2d2d2d;
+}
+
+.section-intro-treby__info div p {
+  color: #2d2d2d; 
 }
