@@ -1429,7 +1429,7 @@ section {
   font-size: 34px;
   font-weight: 700;
   color: #628276;
-//  text-transform: uppercase;
+  /* text-transform: uppercase; */
 }
 
 .donation_info_container {
@@ -2904,6 +2904,7 @@ position: absolute !important;
   display: inline-flex !important;
   flex-wrap: wrap;
 }
+
 .social-links a {
   height: 36px;
   width: 36px;
@@ -2926,6 +2927,10 @@ position: absolute !important;
 }
 .social-links a:hover {
   box-shadow: 0 0 0 3px white;
+}
+
+.social-links--header a:hover{
+  box-shadow: 0 0 0 3px var(--btn-bg);
 }
 .social-links svg {
   width: 100%;
@@ -3339,12 +3344,11 @@ p.videowraplists {
 .video-widget {
   position: fixed;
   left: 0;
-  z-index: 999999;
+  bottom: 0;
   z-index: 4000;
 }
 .video-widget__container {
   font-family: Helvetica;
-  z-index: 999999;
   overflow: hidden;
   border-style: solid;
   background: #eee;
@@ -3953,7 +3957,7 @@ body.compensate-for-scrollbar .header{
 
 .section-prayer__form .block-header h2,
 .section-prayer__form .block-header .h2{
-//    font-size: 32px;
+  /* font-size: 32px; */
 }
 .section-prayer__additional {
   margin-bottom: 30px;
@@ -4488,8 +4492,15 @@ body.compensate-for-scrollbar .header{
       flex: 0 0 50px;
   }
   .section-intro__icon {
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
+    gap: 20px;
+  }
+  .section-intro__icon img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
   }
   .section-intro__video {
     flex-wrap: wrap;
@@ -4643,21 +4654,14 @@ body.compensate-for-scrollbar .header{
 
 .section-intro-treby {
   display: flex;
-
-  @media (max-width: 768px) {
-    align-items: center;
-    flex-direction: column;
-  }
 }
+
 .section-intro-treby__image {
   width: 356px;
   flex-shrink: 0;
   margin-right: 20px;
-  @media (max-width: 768px) {
-    margin-right: 0;
-    margin-bottom: 20px;
-  }
 }
+
 .section-intro-treby__info {
   flex-grow: 1;
 }
@@ -4669,5 +4673,17 @@ body.compensate-for-scrollbar .header{
 }
 
 .section-intro-treby__info div p {
-  color: #2d2d2d; 
+  color: #2d2d2d;
+}
+
+@media (max-width: 768px) {
+  .section-intro-treby {
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .section-intro-treby__image {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
 }
