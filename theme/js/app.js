@@ -349,7 +349,7 @@ if (prayerForm) {
       removeBtn.className = "section-prayer__remove-name";
       removeBtn.title = "Удалить";
       removeBtn.setAttribute("aria-label", "Удалить имя");
-      removeBtn.textContent = "−";
+      removeBtn.textContent = "-";
       label.appendChild(input);
       label.appendChild(removeBtn);
       additionalNames.appendChild(label);
