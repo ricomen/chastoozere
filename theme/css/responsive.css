@@ -516,8 +516,11 @@
 
 @media only screen and (max-width: 400px)
 {
-
+    .form-donation__values-item{
+        font-size: 18px;
+    }
 }
+
 @media only screen and (max-width: 992px) and (orientation: landscape) {
     .header-buttons{
         max-width: 250px;
