@@ -84,6 +84,7 @@
   --card-bg: #f2efe9;
   --btn-bg: #6a8473;
   --btn-border: #e9ecef;
+  --btn-hover-bg: #eac87e;
   --progress-bar-color-primary: #d4b372;
   --progress-bar-color-grey: #dddddd;
 }
@@ -348,15 +349,23 @@ section {
   width: 160px;
   height: initial;
   text-align: center;
-  background: #628276;
+  color: var(--text-white);
+  background-color: #628276;
   border-radius: 7px;
   font-weight: 700; /* box-shadow: inset 0px 0px 0 3px #e9ecef; */
   border: 2px var(--btn-border) solid;
+  transition: 0.3s;
 }
+
+.button:hover {
+  color: var(--text-white);
+  background-color: var(--btn-hover-bg);
+}
+
 .button a {
   display: block;
   font-size: 18px;
-  color: #ffffff;
+  color: inherit;
   line-height: 1;
   text-transform: uppercase;
   font-weight: 700;
@@ -364,6 +373,7 @@ section {
   transition: 0.3s;
   padding: 15px 0px 11px;
 }
+
 .button__transparent {
   background: transparent;
 }
@@ -2867,8 +2877,9 @@ a.bg-info:hover {
 .preview-church img {
   width: 100%;
 }
+/* donation_button  возможно стоит избавиться от этого класса по факту дублирует .button */
 .donation_button a:hover {
-  background: #eac87edb;
+  background:  var(--btn-hover-bg);
 }
 .heading-style-1 {
   /* border-bottom: 2px #e9ecef solid; */
@@ -3048,7 +3059,7 @@ position: absolute !important;
 }
 
 .treb:hover {
-  background-color: #eac87edb;;
+  background-color: #eac87edb;
 }
 
 .treb__image {
