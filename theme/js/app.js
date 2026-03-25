@@ -1,8 +1,13 @@
-function slide(clicableBlock, activeClass) {
-  clicableBlock.onclick = (e) => {
+/**
+ * Toggles active state for an accordion-like clickable block.
+ * @param {HTMLElement} clickableBlock
+ * @param {string} activeClass
+ */
+function slide(clickableBlock, activeClass) {
+  clickableBlock.onclick = (e) => {
     e.preventDefault();
-    clicableBlock.classList.toggle(activeClass);
-    clicableBlock.nextElementSibling.classList.toggle(activeClass);
+    clickableBlock.classList.toggle(activeClass);
+    clickableBlock.nextElementSibling.classList.toggle(activeClass);
   };
 }
 
@@ -11,13 +16,24 @@ const regexpScrollLink = /^#/;
 const regexpRedirectLink = /^https?:/;
 
 const baseOffset = 20;
+const toTopShowOffset = 500;
+const cookieConsentStorageKey = "cookie_consent_accepted";
 
+/**
+ * Returns top offset for smooth scrolling with sticky header compensation.
+ * @returns {number}
+ */
 function getHeaderOffset() {
   const header = document.querySelector(".header");
   const headerHeight = header ? header.clientHeight : 0;
   return headerHeight + baseOffset;
 }
 
+/**
+ * Binds smooth scroll behavior to a link for a target block id.
+ * @param {HTMLElement} link
+ * @param {string} blockId
+ */
 function scrollToBlock(link, blockId) {
   link.addEventListener("click", (e) => {
     e.preventDefault();
@@ -36,34 +52,66 @@ function scrollToBlock(link, blockId) {
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-
+/**
+ * Initializes collapsible "miracle" sections.
+ * @returns {void}
+ */
+function initMiracleSlides() {
   const slidesMiracle = document.querySelectorAll(".section-miracle__header");
+  slidesMiracle.forEach((clickableBlock) => slide(clickableBlock, "active"));
+}
 
-  slidesMiracle?.forEach((clicableBlock) => slide(clicableBlock, "active"));
-
+/**
+ * Initializes "show more" buttons and related label switching.
+ * @returns {void}
+ */
+function initShowMore() {
   const btnsShowMore = document.querySelectorAll(".btn-show-more");
-
   btnsShowMore.forEach((btn) => {
-    const hiddenElements = btn.previousElementSibling.querySelectorAll(".hidden");
+    const hiddenElements = btn.previousElementSibling?.querySelectorAll(".hidden") ?? [];
     btn.onclick = (e) => {
       e.preventDefault();
       btn.classList.toggle("active");
       hiddenElements.forEach((el) => el.classList.toggle("hidden"));
 
+      const label = btn.querySelector("span");
+      if (!label) return;
+
       if (btn.classList.contains("active")) {
-        btn.querySelector("span").textContent = "Скрыть";
-        scrollToBlock(btn, btn.dataset.parentId);
+        label.textContent = "Скрыть";
+        if (btn.dataset.parentId) {
+          scrollToBlock(btn, btn.dataset.parentId);
+        }
       } else {
-        btn.querySelector("span").textContent = "Развернуть все";
+        label.textContent = "Развернуть все";
       }
     };
   });
+}
 
-
+/**
+ * Binds smooth scrolling to in-page anchor links.
+ * @returns {void}
+ */
+function initAnchorScroll() {
   const allLinksInPage = document.querySelectorAll("a");
+  allLinksInPage.forEach((link) => {
+    const href = link.getAttribute("href");
+    if (!href) return;
 
+    const isScrollLink = regexpScrollLink.test(href);
+    const isRedirectLink = regexpRedirectLink.test(href);
 
+    if (isRedirectLink) return;
+    if (isScrollLink) scrollToBlock(link, href.substring(1));
+  });
+}
+
+/**
+ * Initializes "scroll to top" button visibility and click behavior.
+ * @returns {void}
+ */
+function initScrollToTop() {
   const toTopBtn = document.querySelector(".js-to-top-btn");
   if (!toTopBtn) return;
 
@@ -80,30 +128,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.addEventListener("scroll", () => {
     topOffset = window.pageYOffset || document.documentElement.scrollTop;
-    if (topOffset > 500) {
+    if (topOffset > toTopShowOffset) {
       toTopBtn.style.display = "";
     } else {
       toTopBtn.style.display = "none";
     }
   });
+}
 
-  allLinksInPage.forEach((link) => {
-    const href = link.getAttribute("href");
-    if (!href) return;
-
-    const isScrollLink = href.match(regexpScrollLink);
-    const isRedirectLink = href.match(regexpRedirectLink);
-
-    if (isRedirectLink) {
-      return;
-    }
-
-    if (isScrollLink) return scrollToBlock(link, href.substring(1));
-  });
-
+/**
+ * Initializes the prayer form pricing, dynamic fields and submit flow.
+ * @returns {void}
+ */
+function initPrayerForm() {
   //const prayerForm = document.forms.prayer;
   const prayerForm = document.querySelector('[data-form="treby"]');
-
 
   if (prayerForm) {
     const chosePrayerButtonsHandler = prayerForm.querySelector(".section-prayer__chose");
@@ -129,8 +168,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       videoReportSection.querySelectorAll("input").forEach((el) => {
         if (el instanceof HTMLInputElement) {
-          if (el.type === "checkbox") { el.checked = false; }
-          else {
+          if (el.type === "checkbox") {
+            el.checked = false;
+          } else {
             el.value = "";
           }
         }
@@ -233,7 +273,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (isNaN(currentValue) || currentValue < 1) return (currentValue = 1);
 
         inputElement.value = --currentValue;
-        logicAfterCalcutalteValue({
+        logicAfterCalculateValue({
           value: inputElement.value,
         });
 
@@ -246,13 +286,13 @@ document.addEventListener("DOMContentLoaded", () => {
         if (currentValue >= MAX_COUNT) return (currentValue = MAX_COUNT);
 
         inputElement.value = ++currentValue;
-        logicAfterCalcutalteValue({
+        logicAfterCalculateValue({
           value: inputElement.value,
         });
 
       });
 
-      const logicAfterCalcutalteValue = ({ value }) => {
+      const logicAfterCalculateValue = ({ value }) => {
         inputElement.setAttribute("value", value);
         inputElement.dispatchEvent(new Event("change", { bubbles: true }));
       };
@@ -369,20 +409,19 @@ document.addEventListener("DOMContentLoaded", () => {
     function buildPrayerFormData() {
       const formData = new FormData(prayerForm);
 
-      var cID = '';
-      window.ym?.(window.MODx_counterId, 'getClientID', function (clientID) {
+      let cID = "";
+      window.ym?.(window.MODx_counterId, "getClientID", function (clientID) {
         cID = clientID;
       });
 
       function ClientID() {
-        var match = document.cookie.match('(?:^|;)\\s*_ym_uid=([^;]*)');
-        return (match) ? decodeURIComponent(match[1]) : false;
+        const match = document.cookie.match('(?:^|;)\\s*_ym_uid=([^;]*)');
+        return match ? decodeURIComponent(match[1]) : false;
       }
-      if (cID != '') {
+      if (cID !== "") {
         cID = ClientID();
       }
-      
-      console.log(cID);
+
       formData.set("clientID", cID ?? "");
 
       const activeBtn = prayerForm.querySelector(
@@ -441,16 +480,14 @@ document.addEventListener("DOMContentLoaded", () => {
         } catch (err) {
           payload = null;
         }
-        if(payload) {
-          if (payload.script !== undefined && payload.script != '') {
-						pays(prayerForm.id, payload.script);
-					} else {
-						if (payload.url !== undefined && payload.url) {
-							window.location.assign(payload.url);
-						}
-					}
+        if (payload) {
+          if (payload.script !== undefined && payload.script !== "") {
+            pays(prayerForm.id, payload.script);
+          } else if (payload.url !== undefined && payload.url) {
+            window.location.assign(payload.url);
+          }
         }
-                
+
       } catch (error) {
         console.error("Ошибка при отправке формы", error);
       }
@@ -464,9 +501,8 @@ document.addEventListener("DOMContentLoaded", () => {
           .querySelectorAll("button")
           .forEach((btn) => {
             btn.textContent = "Выбрать";
-            btn.closest(".section-prayer__item").classList.remove("active")
-          }
-          );
+            btn.closest(".section-prayer__item").classList.remove("active");
+          });
 
         button.textContent = "Выбрано";
 
@@ -503,9 +539,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const sendPrayer = async (data) => {
       const response = await fetch(document.location.href, {
         method: "POST",
-        headers: {  
-          'X-Requested-With': "XMLHttpRequest"  
-        },  
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+        },
         body: data,
         ...baseRedirectOptions,
       });
@@ -513,8 +549,33 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
   }
-});
+}
 
+/**
+ * Initializes cookie consent banner visibility and persistence.
+ * @returns {void}
+ */
+function initCookieBanner() {
+  const cookieBanner = document.querySelector("#cookie-banner");
+  const cookieAcceptBtn = document.querySelector("#cookie-accept");
+  if (!cookieBanner || !cookieAcceptBtn) return;
+  cookieBanner.hidden = true;
+  if (localStorage.getItem(cookieConsentStorageKey)) {
+    return;
+  }
+  setTimeout(() => {
+    cookieBanner.hidden = false;
+  }, 1000);
+  cookieAcceptBtn.addEventListener("click", () => {
+    cookieBanner.hidden = true;
+    localStorage.setItem(cookieConsentStorageKey, "true");
+  });
+}
+
+/**
+ * Handles initial hash scroll on full page load.
+ * @returns {void}
+ */
 function handleScrollOnPageLoad() {
   const hash = window.location.hash;
   if (!hash || hash === "#") return;
@@ -543,4 +604,13 @@ const baseRedirectOptions = {
 
 window.addEventListener("load", () => {
   handleScrollOnPageLoad();
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  initMiracleSlides();
+  initShowMore();
+  initAnchorScroll();
+  initScrollToTop();
+  initPrayerForm();
+  initCookieBanner();
 });

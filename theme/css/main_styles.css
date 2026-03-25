@@ -1,9 +1,5 @@
 @charset "utf-8";
 /* CSS Document */
-/*
-#43d1ff
-#45c3fe
-*/
 /******************************
 
 [Table of Contents]
@@ -28,8 +24,7 @@
 13. Gallery
 14. Latest News
 15. Footer
-
-
+16. Form validation 
 
 ******************************/
 /***********
@@ -4704,4 +4699,30 @@ body.compensate-for-scrollbar .header{
     margin-right: 0;
     margin-bottom: 20px;
   }
+}
+
+/* 16 Form validation */
+.float-field {
+  position: relative;
+}
+
+.float-field label {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: #8a8a8a;
+  background: #fff;
+  padding: 0 4px;
+  pointer-events: none;
+  transition: all 0.2s ease;
+}
+/* поднятие label при фокусе или когда есть значение */
+.float-field .form_input:focus + label,
+.float-field .form_input:not(:placeholder-shown) + label {
+  top: 0;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: #555;
 }
