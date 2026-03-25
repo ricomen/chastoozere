@@ -669,13 +669,20 @@
             }
 
             // Validation
-            if (!fields['sum']) {
-                isValid = false;
-                showFieldError(form.find('input[name="sum"]').first(), 'Заполните сумму.');
-            } else if (parseFloat(fields['sum']) < 50 && form[0].id !== 'treby-form') {
-                isValid = false;
-                showFieldError(form.find('input[name="sum"]').first(), 'Сумма пожертвования должна быть не менее 50 рублей.');
-            }
+            const $sumInput = form.find('input[name="sum"]').first();
+			let minSum = parseFloat($sumInput.attr('data-min'));
+			if (Number.isNaN(minSum)) {
+				minSum = 50;
+			}
+
+			if (!fields['sum']) {
+				isValid = false;
+				showFieldError($sumInput, 'Заполните сумму.');
+			} else if (parseFloat(fields['sum']) < minSum && form[0].id !== 'treby-form') {
+				console.log('sum < minSum', minSum);
+				isValid = false;
+				showFieldError($sumInput, 'Сумма пожертвования должна быть не менее ' + minSum + ' рублей.');
+			}
             if (form.find('input[name="name"]').length && !fields['name']) {
                 isValid = false;
                 showFieldError(form.find('input[name="name"]').first(), 'Пожалуйста, заполните поле "Ваше имя".');
