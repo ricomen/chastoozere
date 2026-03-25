@@ -4718,6 +4718,12 @@ body.compensate-for-scrollbar .header{
   pointer-events: none;
   transition: all 0.2s ease;
 }
+
+/* для textarea label должен быть выше, чем у обычных input */
+.float-field textarea.form_input + label {
+  top: 22px;
+}
+
 /* поднятие label при фокусе или когда есть значение */
 .float-field .form_input:focus + label,
 .float-field .form_input:not(:placeholder-shown) + label {

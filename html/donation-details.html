@@ -1,0 +1,118 @@
+{set $donationsSumm = $_modx->runSnippet('!yandexCheckoutSumm')}
+{set $newDonations = $_modx->runSnippet('!ordersSumm')}
+{set $donationsSumm = $donationsSumm + $newDonations }
+{set $summ = 6500000}
+<div class="donation_details {$classes}">
+    {if $id == 'cp-middle'}
+    {if $_modx->config.ms2_payment_cloudpayments_enable == 1}
+    <!--cp-->
+    <form id="cp-middle" class="donation-ajax" name="help" method="post">
+        <input type="hidden" name="action" value="donate">
+        <div class="row">
+            [[-- <div class="col-12 form-donations__values mb-2 mt-2">
+                <div class="form-donation__values-item js-form-donation__values-item" data-value="300">300 ₽</div>
+                <div class="form-donation__values-item js-form-donation__values-item" data-value="1000">1000 ₽</div>
+                <div class="form-donation__values-item js-form-donation__values-item" data-value="5000">5000 ₽</div>
+                <div class="form-donation__values-item js-form-donation__values-item" data-value="10000">10000 ₽</div>
+            </div> --]]
+            <div class="col-12 mb-2 input-group-sm">
+                <div class="float-field">
+                    <input id="cloud-donation-sum" type="number" class="cloud-donation-sum form_input price-input" name="sum"
+                        placeholder=" " data-required="1"/>
+                    <label for="cloud-donation-sum">Введите сумму пожертвования</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 mb-2 font-weight-bold">
+            Выберите как часто перечислять средства
+        </div>
+        <div class="col-12 mb-3 input-group cloud-donation-form__subscribe-checkboxes">
+            <label class="mb-0 mr-3"><input class="mr-1 cloud-donation-subscribe-once"
+                    style="position: relative;top: 3px;width: 17px;height: 17px;" type="radio" name="period"
+                    value="single" checked>Единоразово</label>
+            [[-- <label class="mb-0 mr-3"><input class="mr-1 cloud-donation-subscribe-one-day"
+                    style="position: relative;top: 3px;width: 17px;height: 17px;" type="radio" name="period"
+                    value="day">Ежедневно</label> --]]
+            <label class="mb-0 mr-3"><input class="mr-1 cloud-donation-subscribe-one-week"
+                    style="position: relative;top: 3px;width: 17px;height: 17px;" type="radio" name="period"
+                    value="week">Раз в неделю</label>
+            <label class="mb-0"><input class="mr-1 cloud-donation-subscribe-one-month"
+                    style="position: relative;top: 3px;width: 17px;height: 17px;" type="radio" name="period"
+                    value="month">Раз в месяц</label>
+        </div>
+        <div class="col-12 mb-3">
+            <div class="float-field">
+                <input id="cloud-donation-email" type="email" class="cloud-donation-email form_input" name="email"
+                    placeholder=" " data-required="1"/>
+                <label for="cloud-donation-email">Электронная почта e-mail</label>
+            </div>
+        </div>
+        <div class="col-12 mb-3">
+            <div class="float-field">
+                <input id="cloud-donation-name" type="text" class="cloud-donation-name form_input" name="name"
+                    placeholder=" " data-required="1"/>
+                <label for="cloud-donation-name">ФИО благотворителя</label>
+            </div>
+        </div>
+        {*<div class="col-12">
+            <p style="font-size: 14px;">
+                Нажимая кнопку «Пожертвовать», вы соглашаетесь с
+                <a href="{$_modx->makeUrl('94')}" target="_blank">условиями пользовательского соглашения</a> и <a
+                    href="{$_modx->makeUrl('94')}" target="_blank">договором-офертой</a>.<br>
+            </p>
+        </div>*}
+        <div class="col-12 text-center mt-2"><button type="submit" class="form_submit_button">Пожертвовать</button>
+        </div>
+        <div class="col-12">
+            <p style="font-size: 14px; padding-top:10px;" class="form-message"></p>
+        </div>
+</div>
+</form>
+<!--cp-->
+{elseif $_modx->config.mspyookassa_enable == 1}
+<!--yookassa-->
+<form id="donation" method="post" name="pozhertvovanie">
+    <input type="hidden" name="action" value="donate">
+    <div class="row">
+        <div class="col-12" style="margin: 0 0 20px 0;">
+            <input type="text" class="form_input" name="name" placeholder="Ваше имя" required="required">
+        </div>
+        <div class="col-12">
+            <input class="form_input price-input" type="number" name="sum" placeholder="Сумма пожертвования в рублях"
+                required="required">
+        </div>
+        <div class="col-12">
+            <p style="font-size: 14px;">Назначение платежа: Благотворительное пожертвование.</p>
+        </div>
+
+        <div class="col-12"><button type="submit" class="form_submit_button">Внести пожертвование</button></div>
+        <div class="col-12">
+            <p style="font-size:14px; padding-top:10px;" class="form-message"></p>
+        </div>
+    </div>
+</form>
+<!--yookassa-->
+{/if}
+{else}
+{set $percent = ($donationsSumm*100/$summ)|number:2}
+{if $donationsSumm and $percent == '0.00'}
+{set $percent = 0.01}
+{/if}
+<div class="donation_funds">
+    <div class="donation_funds_title">Собираем средства на роспись нижнего Храма в честь Крещения Господня. Необходимо
+        собрать: </div>
+    <div class="donations_funds_value">{($summ - $donationsSumm)|number : 0 : '' : '.'} рублей</div>
+</div>
+<div class="donation_progress_container">
+    <div class="donation_progress_outer">
+        <div class="donation_progress" style="width: {($donationsSumm*100/$summ)|number:2}%;">
+            <div class="donation_progress_value">Собрано
+                {*($donationsSumm*100/$summ)|number:2*}{$percent}%</div>
+        </div>
+    </div>
+    <p style="padding-top:15px;">Собрано <b>{$donationsSumm}</b> р.</p>
+    <div class="button donation_button"><a data-fancybox="" data-src="#popup-donation-cp"
+            href="javascript:;">Пожертвовать<span class="flare"></span></a></div>
+</div>
+{/if}
+</div>
