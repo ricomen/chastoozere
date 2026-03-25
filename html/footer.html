@@ -1,0 +1,690 @@
+{set $homeId = 1}
+<footer class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4 footer_col mb-5">
+				<div class="footer_column footer_subscribe">
+					<div class="footer_title">Пожертвования</div>
+					<div class="footer_text">Храм Рождества Христова, как и заповедовал Иисус Христос существует только благодаря прихожанам и добру людей. Храм регулярно нуждается в помощи оплаты коммунальных услуг и прочих  бытовых расходов. Нажмите на кнопку ниже, чтобы помочь храму:</div>
+					<div class="footer_form_container">
+						<a data-fancybox data-src="#popup-donation" href="javascript:;"
+							class="bg-secondary button p-2 text-light" title="Пожертвовать">Хочу помочь</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 footer_col mb-5">
+				<div class="footer_column footer_links">
+					<div class="footer_title">О храме</div>
+					<ul class="footer_links_list">
+						<li>
+							<a href="/" title="Главная">
+								<i class="fa fa-chevron-right" aria-hidden="true"></i>Главная
+							</a>
+						</li>
+						<li>
+							<a href="{$_modx->makeUrl('83')}" title="Расписание Богослужений">
+								<i class="fa fa-chevron-right" aria-hidden="true"></i>Расписание Богослужений
+							</a>
+						</li>
+						<li>
+							<a href="{$_modx->makeUrl('82')}" title="Святыни Храма">
+								<i class="fa fa-chevron-right" aria-hidden="true"></i>Святыни Храма
+							</a>
+						</li>
+						<li>
+							<a href="{$_modx->makeUrl('45')}" title="Требы">
+								<i class="fa fa-chevron-right" aria-hidden="true"></i>Требы
+							</a>
+						</li>
+						<li>
+							<a href="{$_modx->makeUrl('89')}" title="Об организации">
+								<i class="fa fa-chevron-right" aria-hidden="true"></i>Юридические данные
+							</a>
+						</li>
+						<li>
+							<a href="{$_modx->makeUrl('4')}" title="Контакты">
+								<i class="fa fa-chevron-right" aria-hidden="true"></i>Контакты
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-lg-4 footer_col mb-5">
+				<div class="footer_column footer_contact_column">
+					<div class="footer_logo_container">
+						{if $_modx->resource.id == $homeId}
+						<div>
+							<div class="footer_logo">
+								<img src="/theme/images/logo.jpg" alt="{$homeId | resource : 'nazvaniehrama'}"
+									title="{$homeId | resource : 'nazvaniehrama'}">
+							</div>
+							<div class="footer_logo_text">{$homeId | resource : 'nazvaniehrama'}</div>
+						</div>
+						{else}
+						<a href="/">
+							<div class="footer_logo">
+								<img src="/theme/images/logo.jpg" alt="{$homeId | resource : 'nazvaniehrama'}"
+									title="{$homeId | resource : 'nazvaniehrama'}">
+							</div>
+							<div class="footer_logo_text">{$homeId | resource : 'nazvaniehrama'}</div>
+						</a>
+						{/if}
+					</div>
+					<div class="footer_contact">
+						<p class="mb-2">{$homeId | resource : 'adreshrama'}</p>
+						<ul>
+							<li>
+								<div><i class="fa fa-user" aria-hidden="true"></i></div><span>{$homeId | resource :
+									'batyushka'}</span>
+							</li>
+							<li>
+								<div><i class="fa fa-phone" aria-hidden="true"></i></div>
+								<span><a href="tel:{$homeId | resource : 'telefonhrama'}">{$homeId | resource :
+										'telefonhrama'}</a></span>
+							</li>
+							<li>
+								<div><i class="fa fa-envelope" aria-hidden="true"></i></div>
+								<span><a href="mailto:{$homeId | resource : 'pochtahrama'}">{$homeId | resource :
+										'pochtahrama'}</a></span>
+							</li>
+						</ul>
+					</div>
+					<noindex class="social-links mt-4">
+						{if ($homeId | resource : 'rutube')}
+						<a href="{$homeId | resource : 'rutube'}" rel="nofollow" target="_blank">
+						<img src="/template/icon/rutube.svg" alt="Rutube" title="Rutube">
+	[[--					    
+						  <svg idth="800px" height="512" viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg"
+								xml:space="preserve" fill="none">
+								<path fill="#ffffff"
+									d="M128.689 47.57H20.396v116.843h30.141V126.4h57.756l26.352 38.013h33.75l-29.058-38.188c9.025-1.401 15.522-4.73 19.493-9.985 3.97-5.255 5.956-13.664 5.956-24.875v-8.759c0-6.657-.721-11.912-1.985-15.941-1.264-4.029-3.43-7.533-6.498-10.686-3.249-2.978-6.858-5.08-11.19-6.481-4.332-1.226-9.747-1.927-16.424-1.927zm-4.873 53.08H50.537V73.321h73.279c4.15 0 7.038.7 8.482 1.927 1.444 1.226 2.347 3.503 2.347 6.832v9.81c0 3.503-.903 5.78-2.347 7.006s-4.331 1.752-8.482 1.752z"
+									style="display:inline;fill:none;stroke:#000000;stroke-width:12;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+									transform="translate(1.605 -1.99)" />
+								<path fill="#F41240"
+									d="M162.324 45.568c5.52 0 9.998-4.477 9.998-10s-4.478-10-9.998-10c-5.524 0-10.002 4.477-10.002 10s4.478 10 10.002 10z"
+									style="display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10.6667;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+									transform="translate(1.605 -1.99)" />
+							</svg>  
+	--]]
+						</a>
+						{/if}
+						{if ($homeId | resource : 'youtube')}
+						<a href="{$homeId | resource : 'youtube'}" rel="nofollow" target="_blank">
+						    <img src="/template/icon/youtube.svg" alt="YouTube" title="YouTube">
+						    [[--
+							<svg height="512" viewBox="0 0 24 24" width="512" xmlns="http://www.w3.org/2000/svg">
+								<path
+									d="M.522 17.874c.49 1.738 1.989 2.056 2.089 2.117 2.467.672 16.295.674 18.799 0 1.715-.496 2.03-2.017 2.089-2.117.653-3.474.696-8.003-.03-11.945l.03.196c-.49-1.738-1.989-2.056-2.089-2.117-2.434-.661-16.298-.686-18.799 0C.896 4.505.581 6.025.522 6.125c-.699 3.651-.734 7.84 0 11.749zm9.086-2.223V8.358l6.266 3.652z"
+									fill="#e53935"></path>
+							</svg>
+							--]]
+						</a>
+						{/if}
+						{if ($homeId | resource : 'vk.com')}
+						<a href="{$homeId | resource : 'vk.com'}" rel="nofollow" target="_blank">
+						    <img src="/template/icon/vk.svg" alt="ВКонтакте" title="ВКонтакте">
+						    [[--
+							<svg height="512" viewBox="0 0 24 24" width="512" xmlns="http://www.w3.org/2000/svg">
+								<path
+									d="M19.915 13.028c-.388-.49-.277-.708 0-1.146.005-.005 3.208-4.431 3.538-5.932l.002-.001c.164-.547 0-.949-.793-.949h-2.624c-.668 0-.976.345-1.141.731 0 0-1.336 3.198-3.226 5.271-.61.599-.892.791-1.225.791-.164 0-.419-.192-.419-.739V5.949c0-.656-.187-.949-.74-.949H9.161c-.419 0-.668.306-.668.591 0 .622.945.765 1.043 2.515v3.797c0 .832-.151.985-.486.985-.892 0-3.057-3.211-4.34-6.886-.259-.713-.512-1.001-1.185-1.001H.9c-.749 0-.9.345-.9.731 0 .682.892 4.073 4.148 8.553C6.318 17.343 9.374 19 12.154 19c1.671 0 1.875-.368 1.875-1.001 0-2.922-.151-3.198.686-3.198.388 0 1.056.192 2.616 1.667C19.114 18.217 19.407 19 20.405 19h2.624c.748 0 1.127-.368.909-1.094-.499-1.527-3.871-4.668-4.023-4.878z"
+									fill="#4b729f"></path>
+							</svg>
+							--]]
+						</a>
+						{/if}
+						{if ($homeId | resource : 'ok.ru')}
+						<a href="{$homeId | resource : 'ok.ru'}" rel="nofollow" target="_blank">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.479 512.479">
+								<g fill="#ff9800">
+									<path
+										d="M256.239 277.333c76.583 0 138.667-62.083 138.667-138.667S332.823 0 256.239 0 117.573 62.083 117.573 138.667c.094 76.544 62.122 138.572 138.666 138.666zm0-213.333c41.237 0 74.667 33.429 74.667 74.667s-33.429 74.667-74.667 74.667-74.667-33.429-74.667-74.667S215.002 64 256.239 64z">
+									</path>
+									<path
+										d="M392.069 343.04a53.72 53.72 0 0024.171-44.8 38.698 38.698 0 00-21.696-35.307 40.534 40.534 0 00-42.667 4.011c-56.983 41.543-134.27 41.543-191.253 0a40.747 40.747 0 00-42.667-4.011 38.74 38.74 0 00-21.717 35.285 53.78 53.78 0 0024.171 44.8 246.275 246.275 0 0062.507 29.867 212.318 212.318 0 0011.627 3.243l-64.469 63.04c-16.912 16.409-17.321 43.42-.912 60.333 16.409 16.912 43.42 17.321 60.333.912.352-.342.698-.689 1.038-1.043l65.707-68.011 65.835 68.139c16.395 16.925 43.407 17.355 60.332.96 16.925-16.395 17.355-43.407.96-60.332a42.943 42.943 0 00-1.047-1.044l-64.363-62.976a270.92 270.92 0 0011.669-3.264 245.352 245.352 0 0062.441-29.802z">
+									</path>
+								</g>
+							</svg>
+						</a>
+						{/if}
+					</noindex>
+				</div>
+			</div>
+		</div>
+		<div class="row copyright_row">
+			<div class="col">
+				<div
+					class="copyright_container d-flex flex-lg-row flex-column align-items-center justify-content-lg-start justify-content-center">
+					<div class="copyright">
+						2023-{'' | date : 'Y'} © {$homeId | resource : 'nazvaniehrama'}.
+						<a href="{$_modx->makeUrl('5')}" class="footer-sitemap">Карта сайта</a>
+					</div>
+					<div class="footer_social ml-lg-auto">
+						<a href="tel:{$homeId | resource : 'telefonhrama'}">{$homeId | resource : 'telefonhrama'}</a>
+					</div>
+				</div>
+				<div class="footer-organization">
+					Русская православная церковь. ОГРН {$homeId | resource : 'ogrn'}. ИНН {$homeId | resource : 'inn'}.
+					{$homeId | resource : 'nazvanieorganizacii'}.<br>
+					<a href="{$_modx->makeUrl('95')}" class="ml-0">
+						<i style="margin: 0 5px 0 0;" class="fa fa-angle-double-right"></i>Политика Конфиденциальности</a>
+					<a href="{$_modx->makeUrl('94')}" class="ml-0">
+						<i style="margin: 0 5px 10px 10px;" class="fa fa-angle-double-right"></i>Договор-оферта</a>
+					<a href="{$_modx->makeUrl('96')}" class="ml-0">
+						<i style="margin: 0 5px 10px 10px;" class="fa fa-angle-double-right"></i>Соглашение о регулярных платежах</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+<a class="cloud-payments-form-trigger js-cloud-payments-form-icon text-dark" data-fancybox=""
+	data-src="#popup-donation-cp" href="javascript:;">
+	<img src="/theme/images/logo.jpg" alt="Пожертвовать" title="Пожертвовать">
+	<div style="text-align: center; color: #FFFFFF;">Пожертвовать</div>
+</a>
+
+<div class="popup" id="popup-donation" style="display: none">
+	<div class="h2">Сделать пожертвование</div>
+	<div class="contact_form_container">
+		{if $_modx->config.mspyookassa_enable == 1}
+		[[-- <!--yookassa--> --]]
+		<form id="donation" data-paysystem="yookassa" method="post" name="pozhertvovanie">
+			<input type="hidden" name="action" value="donate">
+			<input type="hidden" name="resource_delivery" value="">
+			<input type="hidden" name="resource_id" value="">
+			<input type="hidden" name="resource_action" value="">
+			<div class="row">
+				<div class="col-12" style="margin: 0 0 20px 0;">
+					<input type="text" class="form_input" name="name" placeholder="Ваше имя" required="required">
+				</div>
+				<div class="col-12">
+					<input class="form_input price-input" type="number" name="sum"
+						placeholder="Сумма пожертвования в рублях" required="required">
+				</div>
+				<div class="col-12">
+					<p style="font-size: 14px;">Назначение платежа: Благотворительное пожертвование.</p>
+				</div>
+
+				<div class="col-12"><button type="submit" class="form_submit_button">Внести пожертвование</button>
+					<p style="font-size: 14px;" class="form-message"></p>
+				</div>
+
+			</div>
+		</form>
+		[[-- <!--yookassa--> --]]
+		{elseif $_modx->config.ms2_payment_cloudpayments_enable == 1}
+		[[-- <!--cp--> --]]
+		<form id="cp-popup2" data-paysystem="cp" class="donation-ajax" method="post" name="goal_donate">
+			<input type="hidden" name="action" value="donate">
+			<input type="hidden" name="resource_delivery" value="">
+			<input type="hidden" name="resource_id" value="">
+			<input type="hidden" name="resource_action" value="">
+			<div class="row">
+				<div class="col-12 form-donations__values mb-2 mt-2">
+					<div class="form-donation__values-item js-form-donation__values-item" data-value="300">300 ₽</div>
+					<div class="form-donation__values-item js-form-donation__values-item" data-value="1000">1000 ₽</div>
+					<div class="form-donation__values-item js-form-donation__values-item" data-value="5000">5000 ₽</div>
+					<div class="form-donation__values-item js-form-donation__values-item" data-value="10000">10000 ₽</div>
+				</div>
+				<div class="col-12 mb-2 input-group-sm">
+					<label for="cloud-donation-sum" style="min-width: 140px;align-self: center;margin: 0 0 0 0;">Введите
+						сумму</label>
+					<div style="width:inherit">
+						<input type="number" class="cloud-donation-sum form_input price-input" name="sum"
+							placeholder="Введите сумму">
+						<div class="text-danger input-error"></div>
+					</div>
+				</div>
+				<div class="col-12 mb-2 font-weight-bold">
+					Выберите как часто перечислять средства
+				</div>
+				<div class="col-12 mb-3 input-group cloud-donation-form__subscribe-checkboxes">
+					<label class="mb-0 mr-3"><input class="mr-1 cloud-donation-subscribe-once"
+							style="position: relative;top: 3px;width: 17px;height: 17px;" type="radio" name="period"
+							value="single" checked>Единоразово</label>
+					<label class="mb-0 mr-3"><input class="mr-1 cloud-donation-subscribe-one-day"
+							style="position: relative;top: 3px;width: 17px;height: 17px;" type="radio" name="period"
+							value="day">Ежедневно</label>
+					<label class="mb-0 mr-3"><input class="mr-1 cloud-donation-subscribe-one-week"
+							style="position: relative;top: 3px;width: 17px;height: 17px;" type="radio" name="period"
+							value="week">Раз в неделю</label>
+					<label class="mb-0"><input class="mr-1 cloud-donation-subscribe-one-month"
+							style="position: relative;top: 3px;width: 17px;height: 17px;" type="radio" name="period"
+							value="month">Раз в месяц</label>
+				</div>
+				<div class="col-12 mb-3">
+					<input type="email" class="cloud-donation-email form_input" name="email"
+						placeholder="Электронная почта e-mail">
+					<div class="text-danger input-error"></div>
+				</div>
+				<div class="col-12 mb-3">
+					<input type="text" class="cloud-donation-name form_input" name="name"
+						placeholder="ФИО благотворителя">
+					<div class="text-danger input-error"></div>
+				</div>
+				{*<div class="col-12">
+					<p style="font-size: 14px;">
+						Нажимая кнопку «Пожертвовать», вы соглашаетесь с
+						<a href="{$_modx->makeUrl('96')}" target="_blank">условиями пользовательского соглашения</a> и
+						<a href="{$_modx->makeUrl('94')}" target="_blank">договором-офертой</a>.<br>
+					</p>
+				</div>*}
+				<div class="col-12 text-center mt-2"><button type="submit"
+						class="form_submit_button">Пожертвовать</button>
+					<p style="font-size: 14px;" class="form-message"></p>
+				</div>
+
+			</div>
+		</form>
+		[[-- <!--cp--> --]]
+		{/if}
+	</div>
+</div>
+
+<div class="popup" id="popup-donation-cp" style="display: none">
+	<div class="h2">Сделать пожертвование</div>
+	<div class="contact_form_container">
+		{if $_modx->config.ms2_payment_cloudpayments_enable == 1}
+		[[-- <!--cp--> --]]
+		<form id="cp-popup" data-paysystem="cp" class="donation-ajax" method="post" name="goal_donate">
+			<input type="hidden" name="action" value="donate">
+			<input type="hidden" name="resource_delivery" value="">
+			<input type="hidden" name="resource_id" value="">
+			<input type="hidden" name="resource_action" value="">
+			<div class="row">
+				<div class="col-12 form-donations__values mb-2 mt-2">
+					<div class="form-donation__values-item js-form-donation__values-item" data-value="300">300 ₽</div>
+					<div class="form-donation__values-item js-form-donation__values-item" data-value="1000">1000 ₽</div>
+					<div class="form-donation__values-item js-form-donation__values-item" data-value="5000">5000 ₽</div>
+					<div class="form-donation__values-item js-form-donation__values-item" data-value="10000">10000 ₽
+					</div>
+				</div>
+				<div class="col-12 mb-2 input-group-sm">
+					<label for="cloud-donation-sum" style="min-width: 140px;align-self: center;margin: 0 0 0 0;">Введите сумму</label>
+					<div style="width:inherit">
+						<input type="number" class="cloud-donation-sum form_input price-input" name="sum"
+							placeholder="Введите сумму">
+						<div class="text-danger input-error"></div>
+					</div>
+				</div>
+				<div class="col-12 mb-2 font-weight-bold">
+					Выберите как часто перечислять средства
+				</div>
+				<div class="col-12 mb-3 input-group cloud-donation-form__subscribe-checkboxes">
+					<label class="mb-0 mr-3"><input class="mr-1 cloud-donation-subscribe-once"
+							style="position: relative;top: 3px;width: 17px;height: 17px;" type="radio" name="period"
+							value="single" checked>Единоразово</label>
+					<label class="mb-0 mr-3"><input class="mr-1 cloud-donation-subscribe-one-day"
+							style="position: relative;top: 3px;width: 17px;height: 17px;" type="radio" name="period"
+							value="day">Ежедневно</label>
+					<label class="mb-0 mr-3"><input class="mr-1 cloud-donation-subscribe-one-week"
+							style="position: relative;top: 3px;width: 17px;height: 17px;" type="radio" name="period"
+							value="week">Раз в неделю</label>
+					<label class="mb-0"><input class="mr-1 cloud-donation-subscribe-one-month"
+							style="position: relative;top: 3px;width: 17px;height: 17px;" type="radio" name="period"
+							value="month">Раз в месяц</label>
+				</div>
+				<div class="col-12 mb-3">
+					<input type="email" class="cloud-donation-email form_input" name="email"
+						placeholder="Электронная почта e-mail">
+					<div class="text-danger input-error"></div>
+				</div>
+				<div class="col-12 mb-3">
+					<input type="text" class="cloud-donation-name form_input" name="name"
+						placeholder="ФИО благотворителя">
+					<div class="text-danger input-error"></div>
+				</div>
+				{*<div class="col-12">
+					<p style="font-size: 14px;">
+						Нажимая кнопку «Пожертвовать», вы соглашаетесь с
+						<a href="{$_modx->makeUrl('96')}" target="_blank">условиями пользовательского соглашения</a> и
+						<a href="{$_modx->makeUrl('94')}" target="_blank">договором-офертой</a>.<br>
+					</p>
+				</div>*}
+				<div class="col-12 text-center mt-2"><button type="submit"
+						class="form_submit_button">Пожертвовать</button>
+					<p style="font-size: 14px; padding-top:10px;" class="form-message"></p>
+				</div>
+
+			</div>
+		</form>
+		[[-- <!--cp--> --]]
+		{elseif $_modx->config.mspyookassa_enable == 1}
+		[[-- <!--yookassa--> --]]
+		<form id="donation" data-paysystem="yookassa" class="yookassaForm" method="post" name="pozhertvovanie">
+			<input type="hidden" name="action" value="donate">
+			<input type="hidden" name="resource_delivery" value="">
+			<input type="hidden" name="resource_id" value="">
+			<input type="hidden" name="resource_action" value="">
+			<div class="row">
+				<div class="col-12" style="margin: 0 0 20px 0;">
+					<input type="text" class="form_input" name="name" placeholder="Ваше имя" required="required">
+				</div>
+				<div class="col-12">
+					<input class="form_input price-input" type="number" name="sum"
+						placeholder="Сумма пожертвования в рублях" required="required">
+				</div>
+				<div class="col-12">
+					<p style="font-size: 14px;">Назначение платежа: Благотворительное пожертвование.</p>
+				</div>
+
+				<div class="col-12"><button type="submit" class="form_submit_button">Внести пожертвование</button>
+					<p style="font-size: 14px;" class="form-message"></p>
+				</div>
+
+			</div>
+		</form>
+		[[-- <!--yookassa--> --]]
+		{/if}
+	</div>
+</div>
+
+
+
+[[#1.tv.videobaner:notempty=`
+
+<div class="video-widget" data-state="default">
+    <div class="video-widget__container">
+        <video id="video-widget__video" loop="" autoplay="" playsinline="" preload="auto" muted="muted" controlslist="nodownload" disablepictureinpicture="" class="video-widget__video" src="[[#1.tv.videobaner]]">
+            <source src="[[#1.tv.videobaner]]" type="video/mp4"></video>
+            <div class="video-widget__close"></div><a class="video-widget__button" href="/treby">Заказать требы</a></div>
+            </div>
+
+
+`]]
+
+
+
+
+
+
+<link href="theme/plugins/fancybox3/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+<script src="/theme/js/jquery-3.2.1.min.js"></script>
+
+<script src="/theme/plugins/fancybox3/jquery.fancybox.min.js"></script>
+<script src="/theme/plugins/easing/easing.js"></script>
+<script src="/theme/plugins/parallax-js-master/parallax.min.js"></script>
+<script src="/theme/plugins/slickjs/slick.js"></script>
+<script src="/theme/js/custom.js?v=4.2"></script>
+<script src="/theme/vendor/boar-sender/boar-sender.js"></script>
+<script src="/theme/js/app.js?v=2.4"></script>
+
+
+<div class="to-top-btn js-to-top-btn" style="">&#8593;</div>
+
+<script src="https://widget.cloudpayments.ru/bundles/cloudpayments?cms=ModxMS2"></script>
+
+
+<script > $(document).ready(function() {
+    var e = $(".video-widget"),
+        a = document.getElementById("video-widget__video");
+    $(".video-widget__close").click(function(t) {
+        return t.preventDefault(), "default" == e.attr("data-state") ? e.hide() : (e.attr("data-state", "default"), a.muted = !0), !1
+    }), $(".video-widget__container").on("click", function(t) {
+        "default" == e.attr("data-state") ? (e.attr("data-state", "opened"), a.currentTime = 0, a.muted = !1) : (e.attr("data-state", "default"), a.muted = !0)
+    }), 1024 < $(document).width() && $(".video-widget__container").on("touchstart", function(t) {
+        "default" == e.attr("data-state") ? (e.attr("data-state", "opened"), a.currentTime = 0, a.muted = !1) : (e.attr("data-state", "default"), a.muted = !0)
+    }), $(document).mouseup(function(t) {
+        e.is(t.target) || 0 !== e.has(t.target).length || "default" == e.attr("data-state") || (e.attr("data-state", "default"), a.muted = !0)
+    })
+});
+</script>
+
+
+
+
+
+<script type="text/javascript">
+	/* Slick */
+	$('.video-carousel').slick({
+		autoplay: false, // автоматическое воспроизведение видео
+		infinite: true, // бесконечная прокрутка
+		slidesToShow: 5, // количество видео, отображаемых за один раз
+		slidesToScroll: 1, // количество видео, прокручиваемых за раз
+		dots: true,
+		arrows: true,
+		responsive: [
+			{
+				breakpoint: 768,
+				settings: {
+					slidesToShow: 2,
+				}
+			},
+			{
+				breakpoint: 420,
+				settings: {
+					slidesToShow: 1,
+				}
+			}
+		]
+	});
+
+	$('.js-carousel-svidetelstva').slick({
+		slidesToShow: 3,
+		slidesToScroll: 1,
+		autoplay: false,
+		arrows: true,
+		responsive: [
+			{
+				breakpoint: 550,
+				settings: {
+					slidesToShow: 2,
+				}
+			},
+			{
+				breakpoint: 420,
+				settings: {
+					slidesToShow: 1,
+				}
+			}
+		]
+	});
+
+</script>
+
+<script type="text/javascript">
+	window.MODx_counterId = parseInt('{$_modx->config.counterId}');
+	window.MODx_pId = '{$_modx->config.ms2_payment_cloudpayments_public_id}';
+	if (window.MODx_counterId <= 0 || isNaN(window.MODx_counterId))
+		console.warn("SET counterId in config");
+	if (window.MODx_pId <= 0 || isNaN(window.MODx_pId))
+		console.warn("SET ms2_payment_cloudpayments_public_id in config");
+
+	function pays(formID, params) {
+		var widget = new cp.CloudPayments();
+		var data = {};
+		var form = $('#' + formID);
+		elSum = form.find('.cloud-donation-sum');
+		elName = form.find('.cloud-donation-name');
+		elEmail = form.find('.cloud-donation-email');
+		elSubscribeOneDay = form.find('.cloud-donation-subscribe-one-day') ;
+		elSubscribeOneWeek = form.find('.cloud-donation-subscribe-one-week');
+		elSubscribeOneMonth = form.find('.cloud-donation-subscribe-one-month');
+
+		sum = parseFloat(elSum.val());
+		name = elName.val();
+		email = elEmail.val();
+		subscribeOneDay = elSubscribeOneDay?.is(':checked') || false;
+		subscribeOneWeek = elSubscribeOneWeek?.is(':checked') || false;
+		subscribeOneMonth = elSubscribeOneMonth?.is(':checked') || false;
+
+		elSum.siblings('.input-error').text('');
+		elName.siblings('.input-error').text('');
+		elEmail.siblings('.input-error').text('');
+
+		if (sum && (!elName.length || name) && (!elEmail.length || email)) {
+			data.CloudPayments = {};
+			if (subscribeOneDay || subscribeOneWeek || subscribeOneMonth) { //включаем подписку
+				var date = new Date();
+				if (subscribeOneMonth) {
+					date.setMonth(date.getMonth() + 1); //следующий месяц
+					date.setDate(date.getDate() - 1); //минус один день
+					recurrent = { interval: 'Month', period: 1, startDate: date }; //один раз в месяц начиная со следующего месяца за минусом одного дня
+				}
+				if (subscribeOneWeek) {
+					date.setDate(date.getDate() + 7);
+					recurrent = { interval: 'Week', period: 1, startDate: date };
+				}
+				if (subscribeOneDay) {
+					date.setDate(date.getDate() + 1);
+					recurrent = { interval: 'Day', period: 1, startDate: date };
+				}
+				data.CloudPayments.recurrent = recurrent;
+			}
+
+			pId = window.MODx_pId || 0;
+			widget.pay('charge',
+			//widget.pay('auth',
+				{
+					paymentSchema: 'Single',
+					publicId: pId,
+					description: name,
+					amount: sum,
+					invoiceId: params.invoiceId,
+					currency: 'RUB',
+					accountId: params.accountId,
+					email: email,
+					skin: "mini",
+					data: data
+				},
+				{
+					onSuccess: function (options) {
+						elSum.val('');
+						elName.val('');
+						elEmail.val('');
+						elSubscribeOneDay.prop('checked', false);
+						elSubscribeOneWeek.prop('checked', false);
+						elSubscribeOneMonth.prop('checked', false);
+						//window.location.reload();
+						let url = new URL(window.location.href);
+						url.searchParams.set('successPay', 'Y'); 
+						url.searchParams.set('msorder', params.invoiceId); 
+						window.location.href = url.href;
+					},
+					onFail: function (reason, options) {
+					},
+					onComplete: function (paymentResult, options) {
+					}
+				}
+			);
+		} else {
+			if (!sum) elSum.siblings('.input-error').text('Введите сумму.');
+			if (elName.length && !name) elName.siblings('.input-error').text('Введите ФИО.');
+			if (elEmail.length && !email) elEmail.siblings('.input-error').text('Введите email.');
+			console.log('no sum && name && email');
+		}
+	}
+
+	// set dynamic price for ym goal
+	jQuery(document).ready(function () {
+
+		$('.js-form-donation__values-item').on('click', function () {
+			$(this).parents('form').find('.price-input').val($(this).data('value')).change();
+		});
+
+		var cID = '';
+		window.ym?.(window.MODx_counterId, 'getClientID', function (clientID) {
+			cID = clientID;
+		});
+
+		function ClientID() {
+			var match = document.cookie.match('(?:^|;)\\s*_ym_uid=([^;]*)');
+			return (match) ? decodeURIComponent(match[1]) : false;
+		}
+		if (cID != '') {
+			cID = ClientID();
+		}
+
+		$(document).on('submit', '#donation,#treby-form,.donation-ajax', function (e) {
+			e.preventDefault(); // Prevent form submission
+
+			var fields = {};
+			var form = $(this);
+			var isValid = true;
+			var errorMessage = '';
+
+			console.log(cID);
+			fields['clientID'] = cID;
+
+			$.each(form.serializeArray(), function () {
+				if (this.name.indexOf('[]') <= 0) {
+					fields[this.name] = this.value;
+				} else {
+					var name = this.name.replace('[]', '');
+					if (typeof (fields['filter'][name]) == 'undefined') {
+						fields[name] = [];
+					}
+					fields[name].push(this.value);
+				}
+			});
+			// Validation
+			if (parseFloat(fields['sum']) < 50 && form[0].id !== "treby-form") {
+				isValid = false;
+				errorMessage += 'Сумма пожертвования должна быть не менее 50 рублей.<br>';
+			}
+			if (form.find('input[name="name"]').length && !fields['name']) {
+				isValid = false;
+				errorMessage += 'Пожалуйста, заполните поле "Ваше имя".<br>';
+			}
+			if (form.find('input[name="email"]').length && !fields['email']) {
+				isValid = false;
+				errorMessage += 'Пожалуйста, заполните поле "Электронная почта e-mail".<br>';
+			}
+
+			if (!isValid) {
+				form.find('.form-message').html(errorMessage);
+				form.find('button').prop('disabled', false);
+				return false;
+			}
+
+			form.find('button').prop('disabled', true);
+
+			$.post(document.location.href, {
+				action: fields['action'],
+				dataType: 'json',
+				fields: fields,
+			}, function (data) {
+				let obj = $.parseJSON(data);
+				console.log(obj);
+				form.find('.form-message').html('');
+				if (obj.success) {
+					if (obj.script !== undefined && obj.script != '') {
+						pays(form.attr('id'), obj.script);
+					} else {
+						if (obj.url !== undefined && obj.url) {
+							window.location.assign(obj.url);
+						}
+					}
+					form.find('button').prop('disabled', false);
+					// Send the goal to Yandex Metrica
+					if('resource_action' in fields && fields['resource_action']){
+						/*const goalName = fields['resource_action'];
+						window['yaCounter' + window.MODx_counterId].reachGoal(goalName);*/
+					} else {
+						const goalName = form.attr('name');
+						window['yaCounter' + window.MODx_counterId].reachGoal(goalName);						
+					}
+				} else {
+					form.find('.form-message').html(obj.message);
+					form.find('button').prop('disabled', false);
+				}
+			});
+			return false;
+		});		
+	});
+</script>
+{if $.get['msorder'] and $.get['msorder'] > 0}
+{set $orderCheck = $_modx->runSnippet('!yookassaCheckOrderById',['orderId' => $.get['msorder']])}
+{if $orderCheck in [0, 2]}
+	<div class="popupSuccess" id="popupSuccess" style="display: none">
+		{'popupSuccess' | chunk}
+	</div>
+	<script>
+	document.addEventListener("DOMContentLoaded", () => {
+		console.log('popupSuccess');
+		$.fancybox.open({
+			src: '#popupSuccess',
+		});
+	});
+	</script>
+{/if}
+{/if}
