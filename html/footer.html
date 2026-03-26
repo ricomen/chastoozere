@@ -186,6 +186,7 @@
     <div style="text-align: center; color: #FFFFFF;">Пожертвовать</div>
 </a>
 
+[[$question_form]]
 <div class="popup" id="popup-donation" style="display: none">
     <div class="h2">Сделать пожертвование</div>
     <div class="contact_form_container">
@@ -208,7 +209,7 @@
                     <div class="float-field">
                         <input id="yookassa-donation-sum" class="form_input price-input" type="number" name="sum"
                             placeholder=" " required="required" {if $_modx->config.mincosta >
-                        0}min="{$_modx->config.mincosta}"{/if}
+                        0}data-min="{$_modx->config.mincosta}"{/if}
                         >
                         <label for="yookassa-donation-sum">Сумма пожертвования в рублях</label>
                     </div>
@@ -242,7 +243,7 @@
                 <div class="col-12 mb-2 input-group-sm">
                     <div class="float-field">
                         <input type="number" class="cloud-donation-sum form_input price-input" name="sum"
-                            placeholder=" " {if $_modx->config.mincosta > 0}min="{$_modx->config.mincosta}"{/if}
+                            placeholder=" " {if $_modx->config.mincosta > 0}data-min="{$_modx->config.mincosta}"{/if}
                         />
                         <label for="cloud-donation-sum">Введите сумму</label>
                     </div>
@@ -318,7 +319,7 @@
                 <div class="col-12 mb-2 input-group-sm">
                     <div class="float-field">
                         <input type="number" id="cloud-donation-sum" class="cloud-donation-sum form_input price-input"
-                            {if $_modx->config.mincosta > 0}min="{$_modx->config.mincosta}"{/if}
+                            {if $_modx->config.mincosta > 0}data-min="{$_modx->config.mincosta}"{/if}
                         name="sum" placeholder=" ">
                         <label for="cloud-donation-sum">Введите сумму</label>
                     </div>
@@ -386,7 +387,7 @@
                     <div class="float-field">
                         <input id="yookassa-donation-sum" class="form_input price-input" type="number" name="sum"
                             placeholder=" " required="required" {if $_modx->config.mincosta >
-                        0}min="{$_modx->config.mincosta}"{/if}
+                        0}data-min="{$_modx->config.mincosta}"{/if}
                         >
                         <label for="yookassa-donation-sum">Сумма пожертвования в рублях</label>
                     </div>
@@ -669,17 +670,13 @@
             }
 
             // Validation
-            const $sumInput = form.find('input[name="sum"]').first();
+			const $sumInput = form.find('input[name="sum"]').first();
 			let minSum = parseFloat($sumInput.attr('data-min'));
-			if (Number.isNaN(minSum)) {
-				minSum = 50;
-			}
 
 			if (!fields['sum']) {
 				isValid = false;
 				showFieldError($sumInput, 'Заполните сумму.');
 			} else if (parseFloat(fields['sum']) < minSum && form[0].id !== 'treby-form') {
-				console.log('sum < minSum', minSum);
 				isValid = false;
 				showFieldError($sumInput, 'Сумма пожертвования должна быть не менее ' + minSum + ' рублей.');
 			}

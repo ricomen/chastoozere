@@ -82,6 +82,7 @@
   --btn-hover-bg: #eac87e;
   --progress-bar-color-primary: #d4b372;
   --progress-bar-color-grey: #dddddd;
+  --danger-color: #dc3545;
 }
 * {
   margin: 0;
@@ -4735,4 +4736,5 @@ body.compensate-for-scrollbar .header{
 
 .field-error {
   font-size: 14px;
+  color: var(--danger-color);
 }
