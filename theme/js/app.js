@@ -573,6 +573,70 @@ function initCookieBanner() {
 }
 
 /**
+ * Floating video banner: toggle mute/expand, close hides widget, click-outside to collapse.
+ * Requires jQuery (loaded before this file in footer).
+ * @returns {void}
+ */
+function initVideoWidget() {
+  if (typeof window.jQuery === "undefined") return;
+
+  const $ = window.jQuery;
+  const $widget = $(".video-widget");
+  const videoEl = document.getElementById("video-widget__video");
+
+  if (!$widget.length || !videoEl) return;
+
+  $(".video-widget__close").on("click", function (t) {
+    t.preventDefault();
+    t.stopPropagation();
+    $widget.attr("data-state", "default");
+    videoEl.muted = true;
+    $widget.hide();
+    return false;
+  });
+
+  $widget.find(".video-widget__button").on("click", function (t) {
+    t.stopPropagation();
+  });
+
+  $widget.find(".video-widget__container").on("click", function () {
+    if ($widget.attr("data-state") === "default") {
+      $widget.attr("data-state", "opened");
+      videoEl.currentTime = 0;
+      videoEl.muted = false;
+    } else {
+      $widget.attr("data-state", "default");
+      videoEl.muted = true;
+    }
+  });
+
+  if ($(document).width() > 1024) {
+    $widget.find(".video-widget__container").on("touchstart", function () {
+      if ($widget.attr("data-state") === "default") {
+        $widget.attr("data-state", "opened");
+        videoEl.currentTime = 0;
+        videoEl.muted = false;
+      } else {
+        $widget.attr("data-state", "default");
+        videoEl.muted = true;
+      }
+    });
+  }
+
+  $(document).on("mouseup", function (t) {
+    if (
+      $widget.is(t.target) ||
+      $widget.has(t.target).length !== 0 ||
+      $widget.attr("data-state") === "default"
+    ) {
+      return;
+    }
+    $widget.attr("data-state", "default");
+    videoEl.muted = true;
+  });
+}
+
+/**
  * Handles initial hash scroll on full page load.
  * @returns {void}
  */
@@ -613,4 +677,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initScrollToTop();
   initPrayerForm();
   initCookieBanner();
+  initVideoWidget();
 });

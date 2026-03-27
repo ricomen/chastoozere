@@ -443,29 +443,9 @@
 <script src="/theme/js/app.js?v=2.4"></script>
 
 
-<div class="to-top-btn js-to-top-btn" style="">&#8593;</div>
+<div class="to-top-btn js-to-top-btn">&#8593;</div>
 
 <script src="https://widget.cloudpayments.ru/bundles/cloudpayments?cms=ModxMS2"></script>
-
-
-<script> $(document).ready(function () {
-        var e = $(".video-widget"),
-            a = document.getElementById("video-widget__video");
-        $(".video-widget__close").click(function (t) {
-            return t.preventDefault(), "default" == e.attr("data-state") ? e.hide() : (e.attr("data-state", "default"), a.muted = !0), !1
-        }), $(".video-widget__container").on("click", function (t) {
-            "default" == e.attr("data-state") ? (e.attr("data-state", "opened"), a.currentTime = 0, a.muted = !1) : (e.attr("data-state", "default"), a.muted = !0)
-        }), 1024 < $(document).width() && $(".video-widget__container").on("touchstart", function (t) {
-            "default" == e.attr("data-state") ? (e.attr("data-state", "opened"), a.currentTime = 0, a.muted = !1) : (e.attr("data-state", "default"), a.muted = !0)
-        }), $(document).mouseup(function (t) {
-            e.is(t.target) || 0 !== e.has(t.target).length || "default" == e.attr("data-state") || (e.attr("data-state", "default"), a.muted = !0)
-        })
-    });
-</script>
-
-
-
-
 
 <script type="text/javascript">
     /* Slick */
