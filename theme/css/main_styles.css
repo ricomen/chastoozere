@@ -87,6 +87,8 @@
   --progress-bar-color-primary: #d4b372;
   --progress-bar-color-grey: #dddddd;
   --danger-color: #dc3545;
+  --label-color: #8a8a8a;
+  --label-color-focus: #555;
 }
 
 * {
@@ -4274,7 +4276,7 @@ body.compensate-for-scrollbar .header {
 .section-prayer__aside .float-field label {
   margin: 0;
   font-size: 18px;
-  color: var(--text-primary) !important;
+  color: var(--label-color) !important;
   background: var(--input-bg-color-primary);
 }
 
@@ -5060,7 +5062,7 @@ body.compensate-for-scrollbar .header {
   margin-bottom: 0px;
   padding: .3em 4px 0;
   font-size: 16px;
-  color: #8a8a8a;
+  color: var(--label-color);
   background: #fff;
   transform: translateY(-50%);
   pointer-events: none;
@@ -5078,7 +5080,7 @@ body.compensate-for-scrollbar .header {
   top: 0;
   transform: translateY(-50%);
   font-size: 12px;
-  color: #555;
+  color: var(--label-color-focus);
 }
 
 .field-error {
