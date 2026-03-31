@@ -57,7 +57,7 @@
                                 {'donate_to_the_temple' | chunk : ['hide_title' => 0, 'kagor' => [[+kagor]], 'ladan' => [[+ladan]], 'maslo' => [[+maslo]]]}
                             {/if}
     
-                            <div data-video-report class="section-prayer__video-respond section-prayer-video-respond">
+                            <div data-video-report class="section-prayer__video-respond section-prayer-video-respond" hidden>
                                 <div class="section-prayer-video-respond__row">
                                     <div class="section-prayer-video-respond__info">
                                         <p>Хочу видеоотчет</p>
@@ -79,11 +79,13 @@
                             <div class="h3 section-prayer__selected-prayer-title">Не выбран</div>
                             <p class="section-prayer__selected-prayer-label" name="selectedPrayerLabel">Не выбран</p>
                             <div class="section-prayer__names">
-                                <label class="section-prayer__label section-prayer__name-row">
-                                    <input type="text" name="name[]" placeholder="Введите имя" maxlength="20" required>
+                                <div class="section-prayer__name-row float-field">
+                                    <input class="form_input" type="text" name="name[]" id="treby17032026-name0"
+                                        placeholder=" " maxlength="20" required>
+                                    <label for="treby17032026-name0">Введите имя</label>
                                     <button type="button" class="section-prayer__remove-name" title="Удалить"
                                         aria-label="Удалить имя">−</button>
-                                </label>
+                                </div>
                                 <button type="button" class="section-prayer__add-name">+ Добавить имя</button>
                             </div>
                         </div>
@@ -95,7 +97,7 @@
                     
                     {*Если в блоке .section-prayer__additionals показывать нечего, то блок с видеотчетом показываем здесь *}
                     {if !$show_additionals}
-                        <div data-video-report class="section-prayer__video-respond section-prayer-video-respond">
+                        <div data-video-report class="section-prayer__video-respond section-prayer-video-respond" hidden>
                             <div class="section-prayer-video-respond__row">
                                 <div class="section-prayer-video-respond__info">
                                     <p>Хочу видеоотчет</p>
@@ -116,17 +118,20 @@
                             <span class="section-prayer__total">0 руб.</span>
                         </p>
                          <div class="section-prayer__footer-fields">
-                            <input class="cloud-donation-name" type="text" name="contact_name" placeholder="Ваше имя" required>
+                            <div class="float-field">
+                                <input class="form_input" type="text" name="contact_name" placeholder="Ваше имя" required>
+                                <label for="contact_name">Ваше имя</label>
+                            </div>
                             {if $paysystem == 4}
                                 <input class="cloud-donation-email" type="email" name="contact_email" placeholder="Ваш e-mail" autocomplete="email" inputmode="email" required>
                             {/if}
                         </div>
                         {if $paysystem == 4}
                             <div class="section-prayer__footer-fields">
-                                            <label class="mb-0 mr-3"><input class="mr-1 cloud-donation-subscribe-once" style="position: relative;top: 3px;width: 17px;height: 17px;" type="radio" name="period" value="single" checked="" required>Единоразово</label>
-                                            <label class="mb-0 mr-3"><input class="mr-1 cloud-donation-subscribe-one-day" style="position: relative;top: 3px;width: 17px;height: 17px;" type="radio" name="period" value="day" required>Ежедневно</label>
-                                            <label class="mb-0 mr-3"><input class="mr-1 cloud-donation-subscribe-one-week" style="position: relative;top: 3px;width: 17px;height: 17px;" type="radio" name="period" value="week" required>Раз в неделю</label>
-                                            <label class="mb-0"><input class="mr-1 cloud-donation-subscribe-one-month" style="position: relative;top: 3px;width: 17px;height: 17px;" type="radio" name="period" value="month" required>Раз в месяц</label>
+                                <label class="mb-0 mr-3"><input class="mr-1 cloud-donation-subscribe-once" style="position: relative;top: 3px;width: 17px;height: 17px;" type="radio" name="period" value="single" checked="" required>Единоразово</label>
+                                <label class="mb-0 mr-3"><input class="mr-1 cloud-donation-subscribe-one-day" style="position: relative;top: 3px;width: 17px;height: 17px;" type="radio" name="period" value="day" required>Ежедневно</label>
+                                <label class="mb-0 mr-3"><input class="mr-1 cloud-donation-subscribe-one-week" style="position: relative;top: 3px;width: 17px;height: 17px;" type="radio" name="period" value="week" required>Раз в неделю</label>
+                                <label class="mb-0"><input class="mr-1 cloud-donation-subscribe-one-month" style="position: relative;top: 3px;width: 17px;height: 17px;" type="radio" name="period" value="month" required>Раз в месяц</label>
                             </div>
                         {/if}
                         <input class="cloud-donation-sum" type="hidden" name="sum" value="0">
@@ -342,16 +347,21 @@
                             <div class="h3 section-prayer__selected-prayer-title">Не выбран</div>
                             <p class="section-prayer__selected-prayer-label" name="selectedPrayerLabel">Не выбран</p>
                             <div class="section-prayer__names">
-                                <label class="section-prayer__label section-prayer__name-row">
-                                    <input type="text" name="name" placeholder="Введите имя" required>
+                                <div class="section-prayer__name-row float-field">
+                                    <input class="form_input" type="text" name="name[]" id="prayer-static-name0"
+                                        placeholder=" " maxlength="20" required>
+                                    <label for="prayer-static-name0">Введите имя</label>
                                     <button type="button" class="section-prayer__remove-name" title="Удалить"
                                         aria-label="Удалить имя">−</button>
-                                </label>
+                                </div>
                                 <button type="button" class="section-prayer__add-name">+ Добавить имя</button>
                             </div>
                         </div>
                         <p>Пожертвовать на благие дела</p>
-                        <input type="text" name="donation-value" placeholder="Введите вашу сумму">
+                        <div class="float-field">
+                            <input class="form_input" type="text" name="donation-value" id="donation-value" placeholder="Введите вашу сумму">
+                            <label for="donation-value" class="form_label">Пожертвовать на благие дела</label>
+                        </div>
                     </aside>
                     <footer class="section-prayer__footer">
                         <p>
@@ -512,5 +522,4 @@
             </div>
         </div>
     </div>
-    *}
-    
+*}

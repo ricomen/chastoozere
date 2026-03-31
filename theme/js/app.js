@@ -357,24 +357,30 @@ function initPrayerForm() {
 
       const createNodeHandler = (id) => {
         if (id >= MAX_NAMES_COUNT) return (buttonAddName.style.display = "none");
-        const label = document.createElement("label");
+        const row = document.createElement("div");
         nameValues.push("");
-        label.classList.add("section-prayer__label", "section-prayer__name-row");
+        row.classList.add("section-prayer__name-row", "float-field");
         const input = document.createElement("input");
-        input.placeholder = "Введите имя";
+        input.type = "text";
+        input.className = "form_input";
+        input.placeholder = " ";
         input.name = "name[]";
-        input.id = id;
+        input.id = `prayer-name-${id}-${Date.now()}`;
         input.required = true;
         input.maxLength = 20;
+        const floatLabel = document.createElement("label");
+        floatLabel.setAttribute("for", input.id);
+        floatLabel.textContent = "Введите имя";
         const removeBtn = document.createElement("button");
         removeBtn.type = "button";
         removeBtn.className = "section-prayer__remove-name";
         removeBtn.title = "Удалить";
         removeBtn.setAttribute("aria-label", "Удалить имя");
         removeBtn.textContent = "−";
-        label.appendChild(input);
-        label.appendChild(removeBtn);
-        additionalNames.appendChild(label);
+        row.appendChild(input);
+        row.appendChild(floatLabel);
+        row.appendChild(removeBtn);
+        additionalNames.insertBefore(row, buttonAddName);
         updateRemoveButtonsVisibility();
       };
 
