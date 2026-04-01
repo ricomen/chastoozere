@@ -15,133 +15,168 @@
     
     {*Проверить тут*}
     {set $show_additionals = 0}
-    {if  $_modx->resource.light_a_candle and $_modx->resource.light_a_candle != 'N'}
-        {set $show_additionals = 1}
+    {if $_modx->resource.light_a_candle and $_modx->resource.light_a_candle != 'N'}
+    {set $show_additionals = 1}
     {/if}
-    {if  $_modx->resource.donate_to_the_temple and $_modx->resource.donate_to_the_temple != 'N'}
-        {set $show_additionals = 1}
+    {if $_modx->resource.donate_to_the_temple and $_modx->resource.donate_to_the_temple != 'N'}
+    {set $show_additionals = 1}
     {/if}
     
     {if $_modx->resource.paysystem_cp == 'Y' and $_modx->config.ms2_payment_cloudpayments_enable == 1}
-        {set $paysystem = "4"}
+    {set $paysystem = "4"}
     {/if}
     {if $paysystem == "3" and $_modx->config.mspyookassa_enable != 1}
-        {set $paysystem = "0"}
+    {set $paysystem = "0"}
     {/if}
     <div class="section-prayer mb-5">
-        <form class="container" name="treby17032026" id="treby17032026" data-form="treby" method="post" data-paysystem="{$paysystem}">
+        <form class="container" name="treby17032026" id="treby17032026" data-form="treby" method="post"
+            data-paysystem="{$paysystem}">
             <input type="hidden" name="action" value="donate">
             <input type="hidden" name="resource_delivery" value="2">
             <input type="hidden" name="fields[resource_action]" value="treby17032026">
             <input type="hidden" name="paysystem" value="{$paysystem}">
-                {if $hide_molebns != 1}
-                    {'treb_molebns' | chunk : ['hide_title' => 0, 'treb_molebns_title' => $treb_molebns_title]}
-                {/if}
-                
-                {* если внутри блока не показываются доп опции не считая видеоотчета, блок скрываем и растягиваем форму на всю ширину*}
-                <div class="section-prayer__form {if !$show_additionals}show_additionals{/if}" name="prayer">
-                    {if $hide_title_note != 1}
-                        <header class="block-header center">
-                            <div class="section_title h2">Заполните записку именами</div>
-                            <p>Треба служится в отношении крещёных.</p>
-                        </header>
-                    {/if}
-                    
-                    
-                    {if $show_additionals} 
-                        <div class="section-prayer__additionals">
-                            {if $_modx->resource.light_a_candle and $_modx->resource.light_a_candle != 'N'}
-                                {'light_a_candle' | chunk : ['hide_title' => 0, 'small_candle' => [[+small_candle]], 'middle_candle' => [[+middle_candle]], 'big_candle' => [[+big_candle]]]}
-                            {/if}
-                            {if $_modx->resource.donate_to_the_temple and !$_modx->resource.donate_to_the_temple != 'N'}
-                                {'donate_to_the_temple' | chunk : ['hide_title' => 0, 'kagor' => [[+kagor]], 'ladan' => [[+ladan]], 'maslo' => [[+maslo]]]}
-                            {/if}
+            {if $hide_molebns != 1}
+            {'treb_molebns' | chunk : ['hide_title' => 0, 'treb_molebns_title' => $treb_molebns_title]}
+            {/if}
     
-                            <div data-video-report class="section-prayer__video-respond section-prayer-video-respond" hidden>
-                                <div class="section-prayer-video-respond__row">
-                                    <div class="section-prayer-video-respond__info">
-                                        <p>Хочу видеоотчет</p>
-                                        <p>Батюшка запишет видео с молебном</p>
-                                    </div>
-                                    <label class="custom-checkbox">
-                                        <input type="checkbox" data-price="[[+video_report_price]]" name="video_report">
-                                        <p>[[+video_report_price]] р</p>
-                                    </label>
-                                </div>
-                                <input type="email" name="email" placeholder="Укажите e-mail куда отправить видео">
-                            </div>
-                        </div>
+            {* если внутри блока не показываются доп опции не считая видеоотчета, блок скрываем и растягиваем форму на всю
+            ширину*}
+            <div class="section-prayer__form {if !$show_additionals}show_additionals{/if}" name="prayer">
+                {if $hide_title_note != 1}
+                <header class="block-header center">
+                    <div class="section_title h2">Заполните записку именами</div>
+                    <p>Треба служится в отношении крещёных.</p>
+                </header>
+                {/if}
+    
+    
+                {if $show_additionals}
+                <div class="section-prayer__additionals">
+                    {if $_modx->resource.light_a_candle and $_modx->resource.light_a_candle != 'N'}
+                    {'light_a_candle' | chunk : ['hide_title' => 0, 'small_candle' => [[+small_candle]], 'middle_candle' =>
+                    [[+middle_candle]], 'big_candle' => [[+big_candle]]]}
                     {/if}
-                    
-                    <aside class="section-prayer__aside">
-                        <div class="section-prayer__block">
-                            <img src="/images/svgicons/crist.svg" alt="Заказ требы" title="Заказ требы">
-                            <div class="h3 section-prayer__selected-prayer-title">Не выбран</div>
-                            <p class="section-prayer__selected-prayer-label" name="selectedPrayerLabel">Не выбран</p>
-                            <div class="section-prayer__names">
-                                <div class="section-prayer__name-row float-field">
-                                    <input class="form_input" type="text" name="name[]" id="treby17032026-name0"
-                                        placeholder=" " maxlength="20" required>
-                                    <label for="treby17032026-name0">Введите имя</label>
-                                    <button type="button" class="section-prayer__remove-name" title="Удалить"
-                                        aria-label="Удалить имя">−</button>
-                                </div>
-                                <button type="button" class="section-prayer__add-name">+ Добавить имя</button>
-                            </div>
-                        </div>
-                         {if $_modx->resource.donate_to_good_causes and $_modx->resource.donate_to_good_causes != 'N'}
-                             {'donate_to_good_causes' | chunk : ['hide_title' => 0,]}
-                         {/if}
-                    </aside>
-                    
-                    
-                    {*Если в блоке .section-prayer__additionals показывать нечего, то блок с видеотчетом показываем здесь *}
-                    {if !$show_additionals}
-                        <div data-video-report class="section-prayer__video-respond section-prayer-video-respond" hidden>
-                            <div class="section-prayer-video-respond__row">
-                                <div class="section-prayer-video-respond__info">
-                                    <p>Хочу видеоотчет</p>
-                                    <p>Батюшка запишет видео с молебном</p>
-                                </div>
-                                <label class="custom-checkbox">
-                                    <input type="checkbox" data-price="[[+video_report_price]]" name="video_report">
-                                    <p>[[+video_report_price]] р</p>
-                                </label>
-                            </div>
-                            <input type="email" name="email" placeholder="Укажите e-mail куда отправить видео">
-                        </div>
+                    {if $_modx->resource.donate_to_the_temple and !$_modx->resource.donate_to_the_temple != 'N'}
+                    {'donate_to_the_temple' | chunk : ['hide_title' => 0, 'kagor' => [[+kagor]], 'ladan' => [[+ladan]],
+                    'maslo' => [[+maslo]]]}
                     {/if}
-                    
-                    <footer class="section-prayer__footer">
-                        <p>
-                            Итого
-                            <span class="section-prayer__total">0 руб.</span>
-                        </p>
-                         <div class="section-prayer__footer-fields">
-                            <div class="float-field">
-                                <input class="form_input" type="text" name="contact_name" placeholder="Ваше имя" required>
-                                <label for="contact_name">Ваше имя</label>
+    
+                    <div data-video-report class="section-prayer__video-respond section-prayer-video-respond" hidden>
+                        <div class="section-prayer-video-respond__row">
+                            <div class="section-prayer-video-respond__info">
+                                <p>Хочу видеоотчет</p>
+                                <p>Батюшка запишет видео с молебном</p>
                             </div>
-                            {if $paysystem == 4}
-                                <input class="cloud-donation-email" type="email" name="contact_email" placeholder="Ваш e-mail" autocomplete="email" inputmode="email" required>
-                            {/if}
+                            <label class="custom-checkbox">
+                                <input type="checkbox" data-price="[[+video_report_price]]" name="video_report">
+                                <p>[[+video_report_price]] р</p>
+                            </label>
+                        </div>
+                        <div class="float-field">
+                            <input class="form_input" type="email" name="email" placeholder=" " autocomplete="email"
+                                inputmode="email">
+                            <label for="email">Укажите e-mail куда отправить видео</label>
+                        </div>
+                    </div>
+                </div>
+                {/if}
+    
+                <aside class="section-prayer__aside">
+                    <div class="section-prayer__block">
+                        <img src="/images/svgicons/crist.svg" alt="Заказ требы" title="Заказ требы">
+                        <div class="h3 section-prayer__selected-prayer-title">Не выбран</div>
+                        <p class="section-prayer__selected-prayer-label" name="selectedPrayerLabel">Не выбран</p>
+                        <div class="section-prayer__names">
+                            <div class="section-prayer__name-row float-field">
+                                <input class="form_input" type="text" name="name[]" id="treby17032026-name0" placeholder=" "
+                                    maxlength="20" required>
+                                <label for="treby17032026-name0">Введите имя</label>
+                                <button type="button" class="section-prayer__remove-name" title="Удалить"
+                                    aria-label="Удалить имя">−</button>
+                            </div>
+                            <button type="button" class="section-prayer__add-name">+ Добавить имя</button>
+                        </div>
+                    </div>
+                    {if $_modx->resource.donate_to_good_causes and $_modx->resource.donate_to_good_causes != 'N'}
+                    {'donate_to_good_causes' | chunk : ['hide_title' => 0,]}
+                    {/if}
+                </aside>
+    
+    
+                {*Если в блоке .section-prayer__additionals показывать нечего, то блок с видеотчетом показываем здесь *}
+                {if !$show_additionals}
+                <div data-video-report class="section-prayer__video-respond section-prayer-video-respond" hidden>
+                    <div class="section-prayer-video-respond__row">
+                        <div class="section-prayer-video-respond__info">
+                            <p>Хочу видеоотчет</p>
+                            <p>Батюшка запишет видео с молебном</p>
+                        </div>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" data-price="[[+video_report_price]]" name="video_report">
+                            <p>[[+video_report_price]] р</p>
+                        </label>
+                    </div>
+                    <div class="float-field">
+                        <input class="form_input" type="email" name="email" placeholder=" " autocomplete="email"
+                            inputmode="email" required>
+                        <label for="email">Укажите e-mail куда отправить видео</label>
+                    </div>
+                </div>
+                {/if}
+    
+                <footer class="section-prayer__footer">
+                    <p>
+                        Итого
+                        <span class="section-prayer__total">0 руб.</span>
+                    </p>
+                    <div class="section-prayer__footer-fields">
+                        <div class="float-field">
+                            <input class="form_input" type="text" name="contact_name" placeholder=" " required>
+                            <label for="contact_name">Ваше имя</label>
                         </div>
                         {if $paysystem == 4}
-                            <div class="section-prayer__footer-fields">
-                                <label class="mb-0 mr-3"><input class="mr-1 cloud-donation-subscribe-once" style="position: relative;top: 3px;width: 17px;height: 17px;" type="radio" name="period" value="single" checked="" required>Единоразово</label>
-                                <label class="mb-0 mr-3"><input class="mr-1 cloud-donation-subscribe-one-day" style="position: relative;top: 3px;width: 17px;height: 17px;" type="radio" name="period" value="day" required>Ежедневно</label>
-                                <label class="mb-0 mr-3"><input class="mr-1 cloud-donation-subscribe-one-week" style="position: relative;top: 3px;width: 17px;height: 17px;" type="radio" name="period" value="week" required>Раз в неделю</label>
-                                <label class="mb-0"><input class="mr-1 cloud-donation-subscribe-one-month" style="position: relative;top: 3px;width: 17px;height: 17px;" type="radio" name="period" value="month" required>Раз в месяц</label>
-                            </div>
+                        <div class="float-field">
+                            <input class="form_input" type="email" name="contact_email" placeholder=" " autocomplete="email"
+                                inputmode="email" required>
+                            <label for="contact_email">Ваш e-mail</label>
+                        </div>
                         {/if}
-                        <input class="cloud-donation-sum" type="hidden" name="sum" value="0">
-                        <button type="sumbit">Подать записку</button>
-                    </footer>
-                </div>
+    
+                    </div>
+                    {if $paysystem == 4}
+                    <div class="section-prayer__footer-fields">
+                        <div class="cloud-donation-form__subscribe-checkboxes mx-auto">
+                            <label class="mb-0 mr-3">
+                                <input class="mr-1 cloud-donation-subscribe-once" type="radio" name="period" value="single"
+                                    checked="" required>
+                                <span>Единоразово</span>
+                            </label>
+                            <label class="mb-0 mr-3">
+                                <input class="mr-1 cloud-donation-subscribe-one-day" type="radio" name="period" value="day"
+                                    required>
+                                <span>Ежедневно</span>
+                            </label>
+                            <label class="mb-0 mr-3">
+                                <input class="mr-1 cloud-donation-subscribe-one-week" type="radio" name="period"
+                                    value="week" required>
+                                <span>Раз в неделю</span>
+                            </label>
+                            <label class="mb-0">
+                                <input class="mr-1 cloud-donation-subscribe-one-month" type="radio" name="period"
+                                    value="month" required>
+                                <span>Раз в месяц</span>
+                            </label>
+                        </div>
+                    </div>
+                    {/if}
+                    <input class="cloud-donation-sum" type="hidden" name="sum" value="0">
+                    <button type="sumbit">Подать записку</button>
+                </footer>
+            </div>
         </form>
     </div>
     {if $_modx->resource.stories_of_people and $_modx->resource.stories_of_people != 'N'}
-         {'stories_of_people' | chunk}
+    {'stories_of_people' | chunk}
     {/if}
     {'other_molebns' | chunk}
     
@@ -337,7 +372,7 @@
                                     <p>1100 р</p>
                                 </label>
                             </div>
-                            <input type="e-mail" name="e-mail" placeholder="Укажите e-mail куда отправить видео">
+                            <input type="e-mail" name="e-mail" placeholder="Укажите e-mail куда отправить видео" disabled>
                         </div>
                     </div>
     
@@ -359,7 +394,8 @@
                         </div>
                         <p>Пожертвовать на благие дела</p>
                         <div class="float-field">
-                            <input class="form_input" type="text" name="donation-value" id="donation-value" placeholder="Введите вашу сумму">
+                            <input class="form_input" type="text" name="donation-value" id="donation-value"
+                                placeholder="Введите вашу сумму">
                             <label for="donation-value" class="form_label">Пожертвовать на благие дела</label>
                         </div>
                     </aside>
@@ -522,4 +558,4 @@
             </div>
         </div>
     </div>
-*}
+    *}

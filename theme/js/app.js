@@ -151,14 +151,17 @@ function initPrayerForm() {
     const totalNodeInput = prayerForm.querySelector(".cloud-donation-sum");
     const donationInput = prayerForm.querySelector("input[donate-to-good-causes]");
     const videoReportSection = prayerForm.querySelector(".section-prayer-video-respond");
-    const videoCheckbox = videoReportSection.querySelector("input[type='checkbox']");
-    const videoEmailInput = videoReportSection.querySelector("input[name='e-mail']");
+    const videoCheckbox = videoReportSection?.querySelector("input[type='checkbox']") ?? null;
+    const videoEmailInput =
+      videoReportSection?.querySelector('input[name="email"], input[name="e-mail"]') ?? null;
 
     const updateVideoEmailRequired = () => {
       if (!videoEmailInput) return;
       if (videoCheckbox && videoCheckbox.checked) {
+        videoEmailInput.disabled = false;
         videoEmailInput.setAttribute("required", "");
       } else {
+        videoEmailInput.disabled = true;
         videoEmailInput.removeAttribute("required");
       }
     };

@@ -3398,8 +3398,23 @@ table td {
 }
 
 .cloud-donation-form__subscribe-checkboxes {
-  font-size: 14px;
+  display: flex;
   flex-wrap: wrap;
+  font-size: 14px;
+}
+
+.cloud-donation-form__subscribe-checkboxes > label {
+  display: flex;
+  align-items: center;
+  
+}
+.cloud-donation-form__subscribe-checkboxes input[type="radio"] {
+  width: 17px;
+  height: 17px;
+}
+
+.cloud-donation-form__subscribe-checkboxes span {
+  padding-top: .2em
 }
 
 .cloud-payments-form-trigger {
@@ -4189,10 +4204,11 @@ body.compensate-for-scrollbar .header {
   flex-direction: column;
 }
 
-.section-prayer__aside>.float-field .form_input,
+/* .section-prayer__aside>.float-field .form_input,
 .section-prayer__names input,
 .section-prayer__footer-fields input,
-.section-prayer-video-respond>input {
+.section-prayer-video-respond>input { */
+.section-prayer .float-field .form_input {
   display: block;
   width: 100%;
   border: none;
@@ -4271,9 +4287,11 @@ body.compensate-for-scrollbar .header {
   padding-right: 48px;
 }
 
-.section-prayer__footer-fields .float-field label,
+/* .section-prayer__footer-fields .float-field label,
 .section-prayer__names .float-field label,
-.section-prayer__aside .float-field label {
+.section-prayer__aside .float-field label { */
+
+.section-prayer .float-field label {
   margin: 0;
   font-size: 18px;
   color: var(--label-color) !important;
@@ -4397,16 +4415,22 @@ body.compensate-for-scrollbar .header {
 }
 
 .section-prayer__footer-fields {
-  /* display: grid;
+  display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
   width: 100%;
-  max-width: 600px; */
+  max-width: 600px;
 }
 
-/* .section-prayer__footer-fields> :only-child {
+.section-prayer__footer-fields> :only-child {
   grid-column: 1 / -1;
-} */
+}
+
+@media (max-width: 767.98px) {
+  .section-prayer__footer-fields {
+    grid-template-columns: 1fr;
+  }
+}
 
 /* .section-prayer__footer-fields input {
   margin: 0px 2px;
@@ -4861,7 +4885,7 @@ body.compensate-for-scrollbar .header {
 
   .section-prayer__form>.block-header,
   .section-prayer__footer {
-    grid-column: span 1;
+    grid-column: span 2;
   }
 
   /* .section-prayer__footer-fields {
@@ -5031,9 +5055,15 @@ body.compensate-for-scrollbar .header {
 }
 
 .section-intro-treby__image {
-  width: 356px;
+  max-width: 356px;
+  width: 100%;
   flex-shrink: 0;
   margin-right: 20px;
+}
+.section-intro-treby__image img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .section-intro-treby__info {
