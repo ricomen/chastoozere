@@ -3403,6 +3403,12 @@ table td {
   font-size: 14px;
 }
 
+.cloud-donation-form__subscribe-checkboxes .lenend {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
 .cloud-donation-form__subscribe-checkboxes > label {
   display: flex;
   align-items: center;
@@ -4290,7 +4296,6 @@ body.compensate-for-scrollbar .header {
 /* .section-prayer__footer-fields .float-field label,
 .section-prayer__names .float-field label,
 .section-prayer__aside .float-field label { */
-
 .section-prayer .float-field label {
   margin: 0;
   font-size: 18px;
@@ -4432,28 +4437,6 @@ body.compensate-for-scrollbar .header {
     grid-template-columns: 1fr;
   }
 }
-
-/* .section-prayer__footer-fields input {
-  margin: 0px 2px;
-  background: #f6eec3;
-  border-radius: 4px;
-  color: #b4b0b0;
-  font-family: Arial;
-  padding: 10px 20px;
-  border: none;
-  border-bottom: 2px solid #bcbbbb;
-  text-align: left;
-  text-transform: uppercase;
-  font-size: 18px;
-  padding-bottom: 4px;
-  width: 100%;
-  outline: none;
-} */
-
-/* .section-prayer__footer-fields input::placeholder {
-  color: #bcbbbb;
-  text-transform: uppercase;
-} */
 
 .section-prayer__additionals .block-header .section_title {
   margin-bottom: 0;
@@ -4914,9 +4897,6 @@ body.compensate-for-scrollbar .header {
     min-width: 47px;
   }
 
-  .section-prayer-video-respond>input {
-    max-width: 100%;
-  }
 
   .section-prayer__block {
     padding: 20px 20px 40px;
