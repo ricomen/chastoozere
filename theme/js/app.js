@@ -163,6 +163,7 @@ function initPrayerForm() {
       } else {
         videoEmailInput.disabled = true;
         videoEmailInput.removeAttribute("required");
+        videoEmailInput.value = "";
       }
     };
 

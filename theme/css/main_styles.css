@@ -4424,6 +4424,7 @@ body.compensate-for-scrollbar .header {
 
 .section-prayer__footer-fields> :only-child {
   grid-column: 1 / -1;
+  margin: 0 auto;
 }
 
 @media (max-width: 767.98px) {
@@ -4594,8 +4595,8 @@ body.compensate-for-scrollbar .header {
   color: #7b7777;
 }
 
-.section-prayer-video-respond>input {
-  display: flex;
+.section-prayer-video-respond>.float-field {
+  /* display: flex;
   align-items: center;
   justify-content: center;
   border: none;
@@ -4604,10 +4605,8 @@ body.compensate-for-scrollbar .header {
   border-radius: 4px;
   font-size: 20px;
   color: #b4b0b0;
-  padding: 4px 20px;
+  padding: 4px 20px; */
   width: 100%;
-  max-width: calc(100% - 96px);
-
 }
 
 .section-prayer-video-respond>input::placeholder {
@@ -4876,7 +4875,8 @@ body.compensate-for-scrollbar .header {
 
   .section-prayer__form {
     grid-template-columns: 1fr;
-    gap: 40px;
+    row-gap: 40px;
+    column-gap: 0;
   }
 
   .section-prayer__additionals {
@@ -5109,7 +5109,7 @@ body.compensate-for-scrollbar .header {
 .float-field .form_input:not(:placeholder-shown)+label {
   top: 0;
   transform: translateY(-50%);
-  font-size: 12px;
+  font-size: 14px;
   color: var(--label-color-focus);
 }
 
@@ -5152,10 +5152,14 @@ body.compensate-for-scrollbar .header {
   .treby-grid {
     grid-template-columns: repeat(3, 1fr);
   }
+
 }
 
 @media (min-width: 991.98px) {
   .treby-grid {
     grid-template-columns: repeat(4, 1fr);
+  }
+  .section-prayer-video-respond>.float-field {
+    max-width: calc(100% - 96px);
   }
 }
