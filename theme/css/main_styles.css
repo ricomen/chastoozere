@@ -346,7 +346,7 @@ section {
 .nopadding {
   padding: 0px !important;
 }
-
+.buttonverh a,
 .button {
   width: 160px;
   height: initial;
@@ -360,6 +360,7 @@ section {
   transition: 0.3s;
 }
 
+.buttonverh a:hover,
 .button:hover {
   color: var(--text-white);
   background-color: var(--btn-hover-bg);
@@ -1826,7 +1827,7 @@ section {
 .news_post_text {
   margin-top: 10px;
   font-size: 16px;
-  text-align: justify;
+  /* text-align: justify; */
 }
 
 .news_post_text p {
@@ -3141,6 +3142,24 @@ position: absolute !important;
   margin-bottom: 20px;
 }
 
+.treby-grid--about-warrior {
+  gap: 20px;
+}
+
+.treby-grid--about-warrior .news_post,
+.treby-grid--about-warrior .news_post_content {
+  display: flex;
+  flex-direction: column;
+}
+
+.treby-grid--about-warrior .news_post_content {
+  flex-grow: 1;
+}
+
+.treby-grid--about-warrior .news_post .button {
+  margin-top: auto !important; /* В иделе, убрать атомарный класс в карточке и задавать отсюда и избавиться от !important*/
+}
+
 .treby-grid__item {
   min-width: 0;
 }
@@ -3181,10 +3200,12 @@ position: absolute !important;
 .treb__label {
   font-weight: 700;
   font-size: 18px;
-  line-height: 1;
+  line-height: 1.2;
   color: var(--text-white);
   text-transform: uppercase;
-  word-break: break-word;
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: auto;
 }
 
 table {
@@ -4397,23 +4418,27 @@ body.compensate-for-scrollbar .header {
   color: #bcbbbb;
 }
 
+
+
+.buttonverh a, /* Хотелка Владимира */
 .section-prayer__footer button {
   display: flex;
   align-items: center;
   justify-content: center;
   border: none;
   outline: none;
-  border-radius: 10px;
-  margin-top: 20px;
   padding: 10px 20px;
+  padding-bottom: 6px;
   text-transform: uppercase;
   background: #548579;
-  color: #fff;
   font-size: 20px;
-  font-weight: 600;
   max-width: 300px;
   width: 100%;
   cursor: pointer;
+}
+
+.section-prayer__footer button {
+  margin-top: 20px;
 }
 
 .section-prayer__total {
@@ -4449,10 +4474,6 @@ body.compensate-for-scrollbar .header {
 
 .section-prayer__item.active {
   background: #ebf1ef;
-}
-
-.section-prayer__footer button:hover {
-  background: #1e4d2b;
 }
 
 .section-prayer-item__info {
@@ -4495,7 +4516,7 @@ body.compensate-for-scrollbar .header {
   border: none;
   outline: none;
   border-radius: 10px;
-  padding: 5px 10px;
+  padding: 7px 10px 3px;
   transition: all 300ms ease;
 }
 
@@ -5066,6 +5087,10 @@ body.compensate-for-scrollbar .header {
   position: relative;
 }
 
+.float-field .form_input {
+  padding-top: .3em;
+}
+
 .float-field label {
   position: absolute;
   left: 12px;
@@ -5091,6 +5116,7 @@ body.compensate-for-scrollbar .header {
   top: 0;
   transform: translateY(-50%);
   font-size: 14px;
+  line-height: 1.1;
   color: var(--label-color-focus);
 }
 
