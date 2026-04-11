@@ -348,6 +348,11 @@ function initPrayerForm() {
 
       const MAX_NAMES_COUNT = 10;
 
+      const updateAddButtonVisibility = () => {
+        const inputs = additionalNames.querySelectorAll("input[name='name[]']");
+        buttonAddName.style.display = inputs.length >= MAX_NAMES_COUNT ? "none" : "";
+      };
+
       const updateRemoveButtonsVisibility = () => {
         const rows = additionalNames.querySelectorAll(".section-prayer__name-row");
         const visible = rows.length > 1;
@@ -358,9 +363,13 @@ function initPrayerForm() {
       };
 
       updateRemoveButtonsVisibility();
+      updateAddButtonVisibility();
 
       const createNodeHandler = (id) => {
-        if (id >= MAX_NAMES_COUNT) return (buttonAddName.style.display = "none");
+        if (id >= MAX_NAMES_COUNT) {
+          updateAddButtonVisibility();
+          return;
+        }
         const row = document.createElement("div");
         nameValues.push("");
         row.classList.add("section-prayer__name-row", "float-field");
@@ -386,6 +395,7 @@ function initPrayerForm() {
         row.appendChild(removeBtn);
         additionalNames.insertBefore(row, buttonAddName);
         updateRemoveButtonsVisibility();
+        updateAddButtonVisibility();
       };
 
       additionalNames.addEventListener("click", (e) => {
@@ -399,6 +409,7 @@ function initPrayerForm() {
         if (index !== -1) nameValues.splice(index, 1);
         if (row) row.remove();
         updateRemoveButtonsVisibility();
+        updateAddButtonVisibility();
         calculateTotal();
       });
     }
